@@ -28,4 +28,9 @@ public class GUIMenuController {
 	public ModelAndView formCliente() {
 		return new ModelAndView("cadastrarCliente");
 	}
+	
+	@GetMapping("/ong")
+	public ModelAndView formOng() {
+		return new ModelAndView("cadastrarOng");
+	}
 }

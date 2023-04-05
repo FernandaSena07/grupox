@@ -2,7 +2,7 @@ package com.fatec.sig1.model;
 
 public class Endereco {
 	private Long id;
-	private String cpf;
+	private String cnpj;
 	private String cep;
 	private String logradouro;
 	private String complemento;
@@ -13,9 +13,9 @@ public class Endereco {
 	public Endereco() {
 	}
 
-	public Endereco(String cpf, String cep, String logradouro, String complemento, String bairro, String localidade,
+	public Endereco(String cnpj, String cep, String logradouro, String complemento, String bairro, String localidade,
 			String uf) {
-		this.cpf = cpf;
+		this.cnpj = cnpj;
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.complemento = complemento;
@@ -24,13 +24,14 @@ public class Endereco {
 		this.uf = uf;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
+	
 
 	public Long getId() {
 		return id;
