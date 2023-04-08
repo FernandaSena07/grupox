@@ -105,7 +105,7 @@ public class MantemOngI implements MantemOng {
 		Endereco endereco = obtemEndereco(ong.getCep());
 
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCnpj(), ong.getDescricao(), ong.getSegmento(), 
-				ong.getCep(), ong.getComplemento(), null, null, null);
+				ong.getCep(), ong.getComplemento(), null, null);
 		
 		ongModificado.setId(id);
 

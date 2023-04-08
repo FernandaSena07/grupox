@@ -49,12 +49,11 @@ public class Ong {
 	private String senha;
 	
 	
-	public Ong(String nome, int telefone, String cep, String endereco, String complemento, String descricao, String segmento, String email, String senha, @CNPJ @NotBlank(message = "O CNPJ é obrigatório") String cnpj) {
+	public Ong(String nome, int telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, @CNPJ @NotBlank(message = "O CNPJ é obrigatório") String cnpj) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
 		this.cep = cep;
-		this.endereco = endereco;
 		this.complemento = complemento;
 		this.descricao = descricao;
 		this.segmento = segmento;
