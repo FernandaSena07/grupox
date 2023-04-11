@@ -91,6 +91,8 @@ public class MantemClienteI implements MantemCliente {
 	public Optional<Cliente> save(Cliente cliente) {
 
 		logger.info(">>>>>> servico save chamado ");
+		
+		cliente.setDataCadastro(new DateTime());
 
 		Endereco endereco = obtemEndereco(cliente.getCep());
 
