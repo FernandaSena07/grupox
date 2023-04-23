@@ -41,7 +41,6 @@ public class MantemOngI implements MantemOng {
 	Logger logger = LogManager.getLogger(this.getClass());
 
 	@Autowired
-
 	MantemOngRepository repository;
 
 	public List<Ong> consultaTodos() {
@@ -152,4 +151,7 @@ public class MantemOngI implements MantemOng {
 
 	}
 
+	public Ong saveTeste(Ong ong) {
+		return repository.save(ong);
+	}
 }

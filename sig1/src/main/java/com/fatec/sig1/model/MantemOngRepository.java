@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
  * 
  * @author
  */
+
 @Repository
 public interface MantemOngRepository extends JpaRepository<Ong, Long> {
     

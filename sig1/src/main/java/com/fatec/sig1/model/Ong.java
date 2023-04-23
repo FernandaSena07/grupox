@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Ong {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -34,22 +35,33 @@ public class Ong {
 	private String cep;
 	
 	private String endereco;
-	@NotBlank(message = "O complemento deve ser informado")
 	
+	@NotBlank(message = "O complemento deve ser informado")
 	private String complemento;
 	private String descricao;
 	private String segmento;
 	
 	@Pattern(regexp = "/^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$/i", message = "O e-mail deve ser escrito no formato nome@gmail.com")
 	@NotBlank(message = "O Email é obrigatório")
-	@Column(unique = true) // nao funciona com @Valid tem que tratar na camada de persistencia
 	private String email;
 
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 	
 	
-	public Ong(String nome, int telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, @CNPJ @NotBlank(message = "O CNPJ é obrigatório") String cnpj) {
+	public Ong(String nome, int telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.cep = cep;
+		this.complemento = complemento;
+		this.descricao = descricao;
+		this.segmento = segmento;
+		this.email = email;
+		this.senha = senha;
+		this.cnpj = cnpj;
+	}
+	
+	public Ong(String nome, int telefone, String cnpj, String cep, String complemento, String descricao,String segmento) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
@@ -57,10 +69,15 @@ public class Ong {
 		this.complemento = complemento;
 		this.descricao = descricao;
 		this.segmento = segmento;
+	}
+
+	public Ong(String nome, String email, String senha, String cnpj) {
+		this.nome = nome;
+		this.cnpj = cnpj;
 		this.email = email;
 		this.senha = senha;
 	}
-
+	
 	public Ong() {
 	}
 	
@@ -103,7 +120,7 @@ public class Ong {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
+	
 	public String getEndereco() {
 		return endereco;
 	}
@@ -135,6 +152,23 @@ public class Ong {
 	public void setSegmento(String segmento) {
 		this.segmento = segmento;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 	
 }
 	
