@@ -57,16 +57,9 @@ public class APIOngController {
 		}
 		if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
 			logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado");
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("CPF já cadastrado");
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
 		}
 		
-		/*
-		try {
-			cliente.setDataNascimento(ongDTO.getDataNascimento());
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-		*/
 		
 		Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
 		logger.info(">>>>>> apicontroller obtem endereco => " + ongDTO.getCep());
@@ -96,7 +89,7 @@ public class APIOngController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
 		}
 		mantemOng.delete(ong.get().getId());
-		return ResponseEntity.status(HttpStatus.OK).body("Cliente excluido");
+		return ResponseEntity.status(HttpStatus.OK).body("ONG excluido");
 	}
 	
 	

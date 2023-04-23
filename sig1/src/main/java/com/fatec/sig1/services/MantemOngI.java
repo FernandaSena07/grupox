@@ -103,8 +103,11 @@ public class MantemOngI implements MantemOng {
 
 		Endereco endereco = obtemEndereco(ong.getCep());
 
-		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCnpj(), ong.getDescricao(), ong.getSegmento(), 
-				ong.getCep(), ong.getComplemento(), null, null);
+		//Colocar if para verificar quantas informações tem?? 
+		//Dependendo de quantas tem chama outro construtor
+		
+		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(), ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj());
+		
 		
 		ongModificado.setId(id);
 

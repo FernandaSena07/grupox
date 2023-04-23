@@ -61,15 +61,6 @@ public class Ong {
 		this.cnpj = cnpj;
 	}
 	
-	public Ong(String nome, int telefone, String cnpj, String cep, String complemento, String descricao,String segmento) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.cnpj = cnpj;
-		this.cep = cep;
-		this.complemento = complemento;
-		this.descricao = descricao;
-		this.segmento = segmento;
-	}
 
 	public Ong(String nome, String email, String senha, String cnpj) {
 		this.nome = nome;

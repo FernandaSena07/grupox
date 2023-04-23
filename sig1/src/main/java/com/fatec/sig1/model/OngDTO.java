@@ -7,8 +7,6 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 public class OngDTO {
 	
-
-
 	@NotBlank(message = "Nome é requerido")
 	private String nome;
 	
