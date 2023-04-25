@@ -31,7 +31,7 @@ import com.fatec.sig1.services.MantemOng;
 public class APIOngController {
 	
 	@Autowired
-	MantemOngI mantemOng;
+	MantemOng mantemOng;
 	
 	Ong ong;
 	Logger logger = LogManager.getLogger(this.getClass());
@@ -101,6 +101,7 @@ public class APIOngController {
 		
 		Optional<Ong> c = mantemOng.consultaPorId(id);
 
+		
 		
 		if (c.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
