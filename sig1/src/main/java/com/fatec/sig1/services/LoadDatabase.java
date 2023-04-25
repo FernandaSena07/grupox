@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 @Configuration 
 public class LoadDatabase {
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
-	@Autowired
-	MantemOngRepository OngRepository;
+	
 	@Bean
 	CommandLineRunner initDatabase(MantemOngRepository repository, MantemCliente repoCliente) {
 	return args -> {
