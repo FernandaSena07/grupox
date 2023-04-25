@@ -60,7 +60,6 @@ public class Ong {
 		this.senha = senha;
 		this.cnpj = cnpj;
 	}
-	
 
 	public Ong(String nome, String email, String senha, String cnpj) {
 		this.nome = nome;

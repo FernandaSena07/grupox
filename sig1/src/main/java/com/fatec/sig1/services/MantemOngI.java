@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -76,10 +77,13 @@ public class MantemOngI implements MantemOng {
 	public Optional<Ong> save(Ong ong) {
 
 		logger.info(">>>>>> servico save chamado ");
+		
+		if (ong.getCep() != null) {
+			Endereco endereco = obtemEndereco(ong.getCep());
 
-		Endereco endereco = obtemEndereco(ong.getCep());
-
-		ong.setEndereco(endereco.getLogradouro());
+			ong.setEndereco(endereco.getLogradouro());
+		}
+	
 
 		return Optional.ofNullable(repository.save(ong));
 
@@ -105,6 +109,7 @@ public class MantemOngI implements MantemOng {
 
 		//Colocar if para verificar quantas informações tem?? 
 		//Dependendo de quantas tem chama outro construtor
+		
 		
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(), ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj());
 		
@@ -154,7 +159,4 @@ public class MantemOngI implements MantemOng {
 
 	}
 
-	public Ong saveTeste(Ong ong) {
-		return repository.save(ong);
-	}
 }

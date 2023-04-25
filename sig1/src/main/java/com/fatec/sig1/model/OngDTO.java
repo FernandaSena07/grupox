@@ -40,6 +40,9 @@ public class OngDTO {
 		this.email = email;
 		this.senha = senha;
 	}
+	
+	public OngDTO() {
+	}
 
 	public String getNome() {
 		return nome;

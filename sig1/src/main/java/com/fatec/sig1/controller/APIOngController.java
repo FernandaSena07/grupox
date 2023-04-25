@@ -36,15 +36,6 @@ public class APIOngController {
 	Ong ong;
 	Logger logger = LogManager.getLogger(this.getClass());
 	
-	@GetMapping("/all")
-	public List<Ong> getAllOngs(){
-		return mantemOng.consultaTodos();
-	}
-	
-	@PostMapping("/salva")
-	public Ong saveOngTeste(@RequestBody Ong Ong) {
-		return mantemOng.saveTeste(Ong);
-	}
 
 	@CrossOrigin // desabilita o cors do spring security
 	@PostMapping
@@ -60,16 +51,20 @@ public class APIOngController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
 		}
 		
-		
-		Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
-		logger.info(">>>>>> apicontroller obtem endereco => " + ongDTO.getCep());
-		if (endereco.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
+		if (ongDTO.getCep() != null) {
+			Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
+			
+			logger.info(">>>>>> apicontroller obtem endereco => " + ongDTO.getCep());
+			
+			if (endereco.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
+			}
 		}
+		
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(mantemOng.save(ongDTO.retornaUmCliente()));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro não esperado ");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro não esperado");
 		}	
 	
 	}
@@ -97,21 +92,28 @@ public class APIOngController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> atualiza(@PathVariable long id, @RequestBody @Valid OngDTO ongDTO, BindingResult result) {
 		
-		logger.info(">>>>>> api atualiza informações de cliente chamado");
+		logger.info(">>>>>> api atualiza informações da ong chamado");
+		
 		if (result.hasErrors()) {
 			logger.info(">>>>>> apicontroller atualiza informações de cliente chamado dados invalidos");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
+		
 		Optional<Ong> c = mantemOng.consultaPorId(id);
+
+		
 		if (c.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
 		}
+		
 		Optional<Endereco> e = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
 		if (e.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CEP não localizado.");
 		}
-		Optional<Ong> cliente = mantemOng.atualiza(id, ongDTO.retornaUmCliente());
-		return ResponseEntity.status(HttpStatus.OK).body(cliente.get());
+		
+		Optional<Ong> ong = mantemOng.atualiza(id, ongDTO.retornaUmCliente());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
 	
 
