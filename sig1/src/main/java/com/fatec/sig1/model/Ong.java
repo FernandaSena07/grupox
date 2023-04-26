@@ -36,6 +36,10 @@ public class Ong {
 	
 	private String endereco;
 	
+	@NotBlank(message = "O CNAE é obrigatório")
+    @Column(unique = true)
+    private String cnae;
+	
 	@NotBlank(message = "O complemento deve ser informado")
 	private String complemento;
 	private String descricao;
@@ -49,7 +53,7 @@ public class Ong {
 	private String senha;
 	
 	
-	public Ong(String nome, int telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj) {
+	public Ong(String nome, int telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -59,13 +63,15 @@ public class Ong {
 		this.email = email;
 		this.senha = senha;
 		this.cnpj = cnpj;
+		this.cnae = cnae;
 	}
 
-	public Ong(String nome, String email, String senha, String cnpj) {
+	public Ong(String nome, String email, String senha, String cnpj, String cnae) {
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.email = email;
 		this.senha = senha;
+		this.cnae = cnae;
 	}
 	
 	public Ong() {
@@ -101,6 +107,14 @@ public class Ong {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	
+	public String getCnae() {
+		return cnae;
+	}
+
+	public void setCnae(String cnae) {
+		this.cnae = cnae;
 	}
 
 	public String getCep() {

@@ -16,6 +16,12 @@ public class OngDTO {
 	@CNPJ	
 	private String cnpj;
 	
+	@NotBlank(message = "O CNAE é obrigatorio")
+    private String cnae;
+
+    private String descricaoi;
+    private String observacao;
+    
 	@NotBlank(message = "O CEP é obrigatório.")
 	private String cep;
 	
@@ -29,10 +35,11 @@ public class OngDTO {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 
-	public OngDTO(String nome, int telefone, String cnpj, String cep, String complemento, String descricao,String segmento, String email, String senha) {
+	public OngDTO(String nome, int telefone, String cnpj, String cnae, String cep, String complemento, String descricao,String segmento, String email, String senha) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
+		this.cnae = cnae;
 		this.cep = cep;
 		this.complemento = complemento;
 		this.descricao = descricao;
@@ -91,6 +98,14 @@ public class OngDTO {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	public String getCnae() {
+		return cnae;
+	}
+
+	public void setCnae(String cnae) {
+		this.cnae = cnae;
+	}
 
 	public int getTelefone() {
 		return telefone;
@@ -118,6 +133,7 @@ public class OngDTO {
 
 	
 	public Ong retornaUmCliente() {
-		return new Ong(nome, telefone, cep, complemento, descricao, segmento, email, senha, cnpj);
+		return new Ong(nome, telefone, cep, complemento, descricao, segmento, email, senha, cnpj, cnae);
 	}
+
 }

@@ -3,6 +3,7 @@ package com.fatec.sig1.services;
 import java.util.List;
 import java.util.Optional;
 import com.fatec.sig1.model.Ong;
+import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
 
 public interface MantemOng {
@@ -20,4 +21,6 @@ public interface MantemOng {
 	Optional<Ong> atualiza(Long id, Ong ong);
 
 	Endereco obtemEndereco(String cep);
+	
+	Cnae obtemCnae(String cnae);
 }

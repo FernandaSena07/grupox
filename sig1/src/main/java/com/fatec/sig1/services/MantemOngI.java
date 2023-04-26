@@ -13,6 +13,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.MantemOngRepository;
+import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
 
 /**
@@ -111,8 +112,9 @@ public class MantemOngI implements MantemOng {
 		//Dependendo de quantas tem chama outro construtor
 		
 		
-		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(), ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj());
+		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(), ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae());
 		
+		Ong ongGetId = this.repository.findById(id).get();
 		
 		ongModificado.setId(id);
 
@@ -120,10 +122,66 @@ public class MantemOngI implements MantemOng {
 
 		logger.info(">>>>>> 2. servico atualiza informacoes de cliente cep valido para o id => "
 				+ ongModificado.getId());
-
+		
+		if(ongModificado.getNome() == null) {
+			ongModificado.setNome(ongGetId.getNome());
+		}
+		
+		if(ongModificado.getTelefone() == 0) {
+			ongModificado.setTelefone(ongGetId.getTelefone());
+		}
+		
+		if(ongModificado.getCnpj() == null) {
+			ongModificado.setCnpj(ongGetId.getCnpj());
+		}
+		
+		if(ongModificado.getCnae() == null) {
+			ongModificado.setCnae(ongGetId.getCnae());
+		}
+		
+		if(ongModificado.getComplemento() == null) {
+			ongModificado.setComplemento(ongGetId.getComplemento());
+		}
+		
+		if(ongModificado.getDescricao() == null) {
+			ongModificado.setDescricao(ongGetId.getDescricao());
+		}
+		
+		if(ongModificado.getSegmento() == null) {
+			ongModificado.setSegmento(ongGetId.getSegmento());
+		}
+		
+		if(ongModificado.getEmail() == null) {
+			ongModificado.setEmail(ongGetId.getEmail());
+		}
+		
+		if(ongModificado.getSenha() == null) {
+			ongModificado.setSenha(ongGetId.getSenha());
+		}
+		
 		return Optional.ofNullable(repository.save(ongModificado));
 
 	}
+	
+	public Cnae obtemCnae(String cnae) {
+		RestTemplate template = new RestTemplate();
+		
+		String url = "https://servicodados.ibge.gov.br/api/v2/cnae/classes/{cnae}";
+		logger.info("Consultar CNAE" + cnae);
+		ResponseEntity<Cnae> resposta = null;
+		
+		try {
+			resposta = template.getForEntity(url, Cnae.class, cnae);
+			return resposta.getBody();
+		} catch (ResourceAccessException e) {
+			logger.info(">>>>>> consulta CNAE erro nao esperado ");
+			return null;		
+		} catch (HttpClientErrorException e) {
+			logger.info(">>>>>> consulta CNAE inválido erro HttpClientErrorException =>" + e.getMessage());
+			return null;
+		}	
+	}
+
 
 	public Endereco obtemEndereco(String cep) {
 
