@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestTemplate;
 
 import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
@@ -47,11 +50,15 @@ public class APIOngController {
 			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos" + result.getFieldError());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
+		
+		/* - CNPJ não obrigatório
 		if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
 			logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado");
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
 		}
-
+		 */
+		
+		
 		if (ongDTO.getCep() != null) {
 			Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
 
@@ -61,12 +68,15 @@ public class APIOngController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
 			}
 		}
-		Optional<Cnae> cnae = Optional.ofNullable(mantemOng.obtemCnae(ong.getCnae()));
+		
+		
 		logger.info(">>>>>> apicontroller obtem cnae => " + ongDTO.getCnae());
+		Optional<Cnae> cnae = Optional.ofNullable(mantemOng.obtemCnae(ongDTO.getCnae()));
 
 		if (cnae.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNAE invalido");
 		}
+		
 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(mantemOng.save(ongDTO.retornaUmCliente()));
@@ -132,4 +142,6 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
 
+
+	
 }

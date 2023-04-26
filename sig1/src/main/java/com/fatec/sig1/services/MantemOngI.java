@@ -167,7 +167,7 @@ public class MantemOngI implements MantemOng {
 		RestTemplate template = new RestTemplate();
 		
 		String url = "https://servicodados.ibge.gov.br/api/v2/cnae/classes/{cnae}";
-		logger.info("Consultar CNAE" + cnae);
+		logger.info("Consultar CNAE: " + cnae);
 		ResponseEntity<Cnae> resposta = null;
 		
 		try {

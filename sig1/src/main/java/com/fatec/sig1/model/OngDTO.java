@@ -18,9 +18,6 @@ public class OngDTO {
 	
 	@NotBlank(message = "O CNAE é obrigatorio")
     private String cnae;
-
-    private String descricaoi;
-    private String observacao;
     
 	@NotBlank(message = "O CEP é obrigatório.")
 	private String cep;
