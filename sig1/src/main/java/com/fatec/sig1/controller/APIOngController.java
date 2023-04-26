@@ -50,15 +50,14 @@ public class APIOngController {
 			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos" + result.getFieldError());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
-		
-		/* - CNPJ não obrigatório
-		if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
-			logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado");
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
-		}
+
+		/*
+		 * - CNPJ não obrigatório if
+		 * (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
+		 * logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado"); return
+		 * ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado"); }
 		 */
-		
-		
+
 		if (ongDTO.getCep() != null) {
 			Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
 
@@ -68,15 +67,13 @@ public class APIOngController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
 			}
 		}
-		
-		
+
 		logger.info(">>>>>> apicontroller obtem cnae => " + ongDTO.getCnae());
 		Optional<Cnae> cnae = Optional.ofNullable(mantemOng.obtemCnae(ongDTO.getCnae()));
 
 		if (cnae.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNAE invalido");
 		}
-		
 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(mantemOng.save(ongDTO.retornaUmCliente()));
@@ -121,9 +118,11 @@ public class APIOngController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
 		}
 
-		Optional<Endereco> e = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
-		if (e.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CEP não localizado.");
+		if (ongDTO.getCep() != null) {
+			Optional<Endereco> e = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
+			if (e.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CEP não localizado.");
+			}
 		}
 
 		Optional<Ong> ong = mantemOng.atualiza(id, ongDTO.retornaUmCliente());
@@ -142,6 +141,4 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
 
-
-	
 }

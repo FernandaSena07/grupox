@@ -78,13 +78,12 @@ public class MantemOngI implements MantemOng {
 	public Optional<Ong> save(Ong ong) {
 
 		logger.info(">>>>>> servico save chamado ");
-		
+
 		if (ong.getCep() != null) {
 			Endereco endereco = obtemEndereco(ong.getCep());
 
 			ong.setEndereco(endereco.getLogradouro());
 		}
-	
 
 		return Optional.ofNullable(repository.save(ong));
 
@@ -108,80 +107,87 @@ public class MantemOngI implements MantemOng {
 
 		Endereco endereco = obtemEndereco(ong.getCep());
 
-		//Colocar if para verificar quantas informações tem?? 
-		//Dependendo de quantas tem chama outro construtor
-		
-		
-		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(), ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae());
-		
+		// Colocar if para verificar quantas informações tem??
+		// Dependendo de quantas tem chama outro construtor
+
+		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(),
+				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae());
+
 		Ong ongGetId = this.repository.findById(id).get();
-		
+
 		ongModificado.setId(id);
 
-		ongModificado.setEndereco(endereco.getLogradouro());
-
-		logger.info(">>>>>> 2. servico atualiza informacoes de cliente cep valido para o id => "
-				+ ongModificado.getId());
+		if (ongModificado.getCep() == null) {
+			ongModificado.setEndereco(ongGetId.getEndereco());
+		}else {			
+			ongModificado.setEndereco(endereco.getLogradouro());
+		}
 		
-		if(ongModificado.getNome() == null) {
+		logger.info(
+				">>>>>> 2. servico atualiza informacoes de cliente cep valido para o id => " + ongModificado.getId());
+
+		if (ongModificado.getNome() == null) {
 			ongModificado.setNome(ongGetId.getNome());
 		}
-		
-		if(ongModificado.getTelefone() == 0) {
+
+		if (ongModificado.getTelefone() == 0) {
 			ongModificado.setTelefone(ongGetId.getTelefone());
 		}
-		
-		if(ongModificado.getCnpj() == null) {
+
+		if (ongModificado.getCnpj() == null) {
 			ongModificado.setCnpj(ongGetId.getCnpj());
 		}
-		
-		if(ongModificado.getCnae() == null) {
+
+		if (ongModificado.getCnae() == null) {
 			ongModificado.setCnae(ongGetId.getCnae());
 		}
-		
-		if(ongModificado.getComplemento() == null) {
+
+		if (ongModificado.getComplemento() == null) {
 			ongModificado.setComplemento(ongGetId.getComplemento());
 		}
-		
-		if(ongModificado.getDescricao() == null) {
+
+		if (ongModificado.getDescricao() == null) {
 			ongModificado.setDescricao(ongGetId.getDescricao());
 		}
-		
-		if(ongModificado.getSegmento() == null) {
+
+		if (ongModificado.getSegmento() == null) {
 			ongModificado.setSegmento(ongGetId.getSegmento());
 		}
-		
-		if(ongModificado.getEmail() == null) {
+
+		if (ongModificado.getEmail() == null) {
 			ongModificado.setEmail(ongGetId.getEmail());
 		}
-		
-		if(ongModificado.getSenha() == null) {
+
+		if (ongModificado.getSenha() == null) {
 			ongModificado.setSenha(ongGetId.getSenha());
 		}
-		
+
+		if (ongModificado.getCep() == null) {
+			ongModificado.setCep(ongGetId.getCep());
+		}
+
 		return Optional.ofNullable(repository.save(ongModificado));
 
 	}
-	
+
 	public Cnae obtemCnae(String cnae) {
 		RestTemplate template = new RestTemplate();
-		
+
 		String url = "https://servicodados.ibge.gov.br/api/v2/cnae/classes/{cnae}";
 		logger.info("Consultar CNAE: " + cnae);
 		ResponseEntity<Cnae> resposta = null;
-		
+
 		try {
 			resposta = template.getForEntity(url, Cnae.class, cnae);
 			return resposta.getBody();
 		} catch (ResourceAccessException e) {
 			logger.info(">>>>>> consulta CNAE erro nao esperado ");
-			return null;		
+			return null;
 		} catch (HttpClientErrorException e) {
 			logger.info(">>>>>> consulta CNAE inválido erro HttpClientErrorException =>" + e.getMessage());
 			return null;
-		}	
+		}
 	}
-
 
 	public Endereco obtemEndereco(String cep) {
 
@@ -204,8 +210,10 @@ public class MantemOngI implements MantemOng {
 			logger.info(">>>>>> consulta CEP erro nao esperado ");
 
 			return null;
-			/** Verificar se é correto manter dessa  forma, pois a referencia acima é de client. 
-			**/
+			/**
+			 * Verificar se é correto manter dessa forma, pois a referencia acima é de
+			 * client.
+			 **/
 
 		} catch (HttpClientErrorException e) {
 

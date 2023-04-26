@@ -27,13 +27,12 @@ public class LoadDatabase {
 		repository.deleteAll();
 		
 		Ong ong1 = new Ong("Adote sempre cabe mais um", 981151084, "03694000","1", "2", "3", "adotesemprecabemaisum@gmail.com", "456", "33.605.926/0001-60", "11111111");
-	
+		//6612-6|05
+		//7020-4|00
+		
 		ong1.setEndereco("Aguia de Haia");
 		log.info("Preloading " + repository.save(ong1));
 		
 		};
-		
-		
 	}
-
 }
