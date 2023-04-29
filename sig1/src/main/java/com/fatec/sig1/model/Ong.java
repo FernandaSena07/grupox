@@ -24,7 +24,7 @@ public class Ong {
 	private String nome;
 	
 	@NotBlank(message = "Insira apenas números")
-	private int telefone;
+	private long telefone;
 	
 	@CNPJ
 	@NotBlank(message = "O CNPJ é obrigatório")
@@ -53,7 +53,7 @@ public class Ong {
 	private String senha;
 	
 	
-	public Ong(String nome, int telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae) {
+	public Ong(String nome, long telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -93,11 +93,11 @@ public class Ong {
 		this.nome = nome;
 	}
 
-	public int getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
 

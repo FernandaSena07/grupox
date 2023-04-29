@@ -11,7 +11,7 @@ public class OngDTO {
 	private String nome;
 	
 	@NotBlank(message = "Insira apenas números")
-	private int telefone;
+	private long telefone;
 	
 	@CNPJ	
 	private String cnpj;
@@ -32,7 +32,7 @@ public class OngDTO {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 
-	public OngDTO(String nome, int telefone, String cnpj, String cnae, String cep, String complemento, String descricao,String segmento, String email, String senha) {
+	public OngDTO(String nome, long telefone, String cnpj, String cnae, String cep, String complemento, String descricao,String segmento, String email, String senha) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
@@ -104,11 +104,11 @@ public class OngDTO {
 		this.cnae = cnae;
 	}
 
-	public int getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
 
