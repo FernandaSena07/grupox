@@ -51,13 +51,13 @@ public class APIOngController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
 
-		/*
-		 * - CNPJ não obrigatório if
-		 * (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
-		 * logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado"); return
-		 * ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado"); }
-		 */
-
+		if (ongDTO.getCnpj() != null) {
+			if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
+				logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado");
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
+			}
+		}
+		
 		if (ongDTO.getCep() != null) {
 			Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
 
