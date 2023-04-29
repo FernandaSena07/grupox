@@ -57,7 +57,7 @@ public class MantemOngI implements MantemOng {
 
 	public Optional<Ong> consultaPorCnpj(String cnpj) {
 
-		logger.info(">>>>>> servico consultaPorCpf chamado");
+		logger.info(">>>>>> servico consultaPorCnpj chamado");
 
 		return repository.findByCnpj(cnpj);
 
@@ -103,7 +103,7 @@ public class MantemOngI implements MantemOng {
 
 	public Optional<Ong> atualiza(Long id, Ong ong) {
 
-		logger.info(">>>>>> 1.servico atualiza informações de cliente chamado");
+		logger.info(">>>>>> 1.servico atualiza informações da ong chamado");
 
 		Endereco endereco = obtemEndereco(ong.getCep());
 
@@ -124,7 +124,7 @@ public class MantemOngI implements MantemOng {
 		}
 		
 		logger.info(
-				">>>>>> 2. servico atualiza informacoes de cliente cep valido para o id => " + ongModificado.getId());
+				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id => " + ongModificado.getId());
 
 		if (ongModificado.getNome() == null) {
 			ongModificado.setNome(ongGetId.getNome());
@@ -210,10 +210,6 @@ public class MantemOngI implements MantemOng {
 			logger.info(">>>>>> consulta CEP erro nao esperado ");
 
 			return null;
-			/**
-			 * Verificar se é correto manter dessa forma, pois a referencia acima é de
-			 * client.
-			 **/
 
 		} catch (HttpClientErrorException e) {
 

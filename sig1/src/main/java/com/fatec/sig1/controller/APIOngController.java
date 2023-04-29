@@ -53,7 +53,7 @@ public class APIOngController {
 
 		if (ongDTO.getCnpj() != null) {
 			if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
-				logger.info(">>>>>> apicontroller consultaporcpf cpf ja cadastrado");
+				logger.info(">>>>>> apicontroller consultaporcnpj CNPJ ja cadastrado");
 				return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
 			}
 		}
@@ -97,7 +97,7 @@ public class APIOngController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
 		}
 		mantemOng.delete(ong.get().getId());
-		return ResponseEntity.status(HttpStatus.OK).body("ONG excluido");
+		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
 
 	@CrossOrigin // desabilita o cors do spring security
@@ -108,7 +108,7 @@ public class APIOngController {
 		logger.info(">>>>>> api atualiza informações da ong chamado");
 
 		if (result.hasErrors()) {
-			logger.info(">>>>>> apicontroller atualiza informações de cliente chamado dados invalidos");
+			logger.info(">>>>>> apicontroller atualiza informações da ong chamado dados invalidos");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
 
