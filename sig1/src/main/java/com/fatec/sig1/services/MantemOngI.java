@@ -111,7 +111,8 @@ public class MantemOngI implements MantemOng {
 		// Dependendo de quantas tem chama outro construtor
 
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(),
-				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae());
+				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae(), 
+				ong.getContaCorrente(),ong.getAgencia(), ong.getPix(), ong.getCpf());
 
 		Ong ongGetId = this.repository.findById(id).get();
 
@@ -165,7 +166,24 @@ public class MantemOngI implements MantemOng {
 		if (ongModificado.getCep() == null) {
 			ongModificado.setCep(ongGetId.getCep());
 		}
-
+		
+		if (ongModificado.getContaCorrente() == null) {
+			ongModificado.setContaCorrente(ongGetId.getContaCorrente());
+		}
+		
+		if (ongModificado.getAgencia() == null) {
+			ongModificado.setAgencia(ongGetId.getAgencia());
+		}
+		
+		if (ongModificado.getPix() == null) {
+			ongModificado.setPix(ongGetId.getPix());
+		}
+		
+		if (ongModificado.getCpf() == null) {
+			ongModificado.setCpf(ongGetId.getCpf());
+		}
+		
+		
 		return Optional.ofNullable(repository.save(ongModificado));
 
 	}

@@ -26,7 +26,7 @@ public class LoadDatabase {
 	return args -> {
 		repository.deleteAll();
 		
-		Ong ong1 = new Ong("Adote sempre cabe mais um", 981151084, "03694000","1", "2", "3", "adotesemprecabemaisum@gmail.com", "456", "33.605.926/0001-60", "11111111");
+		Ong ong1 = new Ong("Adote sempre cabe mais um", 981151084, "03694000","1", "2", "3", "adotesemprecabemaisum@gmail.com", "456", "33.605.926/0001-60", "11111111", "089527", "0191", "emailpix@gmail.com", "302.206.482-71");
 		//6612-6|05
 		//7020-4|00
 		

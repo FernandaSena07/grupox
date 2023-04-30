@@ -52,8 +52,13 @@ public class Ong {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 	
+	private String contaCorrente;
+	private String agencia;
+	private String pix;
+	private String Cpf;
 	
-	public Ong(String nome, long telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae) {
+	
+	public Ong(String nome, long telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae, String contaCorrente, String agencia, String pix, String Cpf) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -64,6 +69,10 @@ public class Ong {
 		this.senha = senha;
 		this.cnpj = cnpj;
 		this.cnae = cnae;
+		this.contaCorrente = contaCorrente;
+		this.agencia = agencia;
+		this.pix = pix;
+		this.Cpf = Cpf;
 	}
 
 	public Ong(String nome, String email, String senha, String cnpj, String cnae) {
@@ -171,6 +180,38 @@ public class Ong {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getContaCorrente() {
+		return contaCorrente;
+	}
+
+	public void setContaCorrente(String contaCorrente) {
+		this.contaCorrente = contaCorrente;
+	}
+
+	public String getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
+	}
+
+	public String getCpf() {
+		return Cpf;
+	}
+
+	public void setCpf(String cpf) {
+		Cpf = cpf;
+	}
+
+	public String getPix() {
+		return pix;
+	}
+
+	public void setPix(String pix) {
+		this.pix = pix;
 	}
 	
 	
