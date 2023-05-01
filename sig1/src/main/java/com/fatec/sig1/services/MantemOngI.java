@@ -239,4 +239,18 @@ public class MantemOngI implements MantemOng {
 
 	}
 
+	@Override
+	public Optional<Ong> findByEmail(String email) {
+		logger.info(">>>>>> servico consulta Email chamado");
+
+		return repository.findByEmail(email);
+	}
+
+	@Override
+	public Optional<Ong> findBySenha(String senha) {
+		logger.info(">>>>>> servico consulta Senha chamado");
+
+		return repository.findBySenha(senha);
+	}
+
 }

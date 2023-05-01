@@ -23,4 +23,8 @@ public interface MantemOng {
 	Endereco obtemEndereco(String cep);
 	
 	Cnae obtemCnae(String cnae);
+	
+    Optional<Ong> findByEmail(String email);
+    
+    Optional<Ong> findBySenha(String senha);
 }

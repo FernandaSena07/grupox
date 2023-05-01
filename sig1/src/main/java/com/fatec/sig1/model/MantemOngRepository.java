@@ -23,4 +23,7 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
 
     Optional<Ong> findBySegmento(String segmento);
   
+    Optional<Ong> findByEmail(String email);
+    
+    Optional<Ong> findBySenha(String senha);
 }

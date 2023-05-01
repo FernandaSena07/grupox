@@ -140,5 +140,24 @@ public class APIOngController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@PostMapping("/login")
+	public ResponseEntity<Object> login(@RequestBody @Valid OngDTO ongDTO, BindingResult result) {
+		logger.info(">>>>>> email da requisicao:" + ongDTO.getEmail());
+		logger.info(">>>>>> senha da requisicao:" + ongDTO.getSenha());
+		
+		Optional<Ong> ongEmail = mantemOng.findByEmail(ongDTO.getEmail());
+		Optional<Ong> ongSenha = mantemOng.findBySenha(ongDTO.getSenha());
+		
+		logger.info(">>>>>> Encontrou Email no banco:" + ongEmail);
+		logger.info(">>>>>> Encontrou Senha no banco:" + ongSenha);
+		
+		if (ongEmail.isEmpty() || ongSenha.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body("Bem vindo!");
+	}
+
 
 }
