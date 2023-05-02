@@ -112,7 +112,7 @@ public class MantemOngI implements MantemOng {
 
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(),
 				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae(), 
-				ong.getContaCorrente(),ong.getAgencia(), ong.getPix(), ong.getCpf());
+				ong.getContaCorrente(),ong.getAgencia(), ong.getPix(), ong.getCpf(), ong.getRegiao());
 
 		Ong ongGetId = this.repository.findById(id).get();
 
@@ -183,6 +183,9 @@ public class MantemOngI implements MantemOng {
 			ongModificado.setCpf(ongGetId.getCpf());
 		}
 		
+		if (ongModificado.getRegiao() == null) {
+			ongModificado.setRegiao(ongGetId.getRegiao());
+		}
 		
 		return Optional.ofNullable(repository.save(ongModificado));
 

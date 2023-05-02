@@ -52,13 +52,19 @@ public class Ong {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 	
+	@NotBlank(message = "A região é obrigatório")
+	private String regiao;
+	
 	private String contaCorrente;
 	private String agencia;
 	private String pix;
 	private String Cpf;
 	
 	
-	public Ong(String nome, long telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae, String contaCorrente, String agencia, String pix, String Cpf) {
+	
+	public Ong(String nome, long telefone, String cep, String complemento, 
+			String descricao, String segmento, String email, String senha, String cnpj, 
+			String cnae, String contaCorrente, String agencia, String pix, String Cpf, String regiao) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -73,6 +79,7 @@ public class Ong {
 		this.agencia = agencia;
 		this.pix = pix;
 		this.Cpf = Cpf;
+		this.regiao = regiao;
 	}
 
 	public Ong(String nome, String email, String senha, String cnpj, String cnae) {
@@ -212,6 +219,14 @@ public class Ong {
 
 	public void setPix(String pix) {
 		this.pix = pix;
+	}
+
+	public String getRegiao() {
+		return regiao;
+	}
+
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
 	}
 	
 	

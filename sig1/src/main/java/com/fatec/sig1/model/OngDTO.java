@@ -32,12 +32,17 @@ public class OngDTO {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 	
+	@NotBlank(message = "A senha é obrigatório")
+	private String regiao;
+	
 	private String contaCorrente;
 	private String agencia;
 	private String pix;
 	private String Cpf;
 
-	public OngDTO(String nome, long telefone, String cep, String complemento, String descricao, String segmento, String email, String senha, String cnpj, String cnae, String contaCorrente, String agencia, String pix, String Cpf) {
+	public OngDTO(String nome, long telefone, String cep, String complemento, 
+			String descricao, String segmento, String email, String senha, String cnpj, 
+			String cnae, String contaCorrente, String agencia, String pix, String Cpf, String regiao) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
@@ -52,6 +57,7 @@ public class OngDTO {
 		this.agencia = agencia;
 		this.pix = pix;
 		this.Cpf = Cpf;
+		this.regiao = regiao;
 	}
 	
 	public OngDTO() {
@@ -166,10 +172,18 @@ public class OngDTO {
 	}
 
 	public void setCpf(String cpf) {
-		Cpf = cpf;
+		this.Cpf = cpf;
+	}
+	
+	public String getRegiao() {
+		return regiao;
+	}
+
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
 	}
 
 	public Ong retornaUmCliente() {
-		return new Ong(nome, telefone, cep, complemento, descricao, segmento, email, senha, cnpj, cnae, contaCorrente, agencia, pix, Cpf);
+		return new Ong(nome, telefone, cep, complemento, descricao, segmento, email, senha, cnpj, cnae, contaCorrente, agencia, pix, Cpf, regiao);
 	}
 }
