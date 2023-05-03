@@ -150,8 +150,12 @@ public class APIOngController {
 		Optional<Ong> ongEmail = mantemOng.findByEmail(ongDTO.getEmail());
 		Optional<Ong> ongSenha = mantemOng.findBySenha(ongDTO.getSenha());
 		
-		logger.info(">>>>>> Encontrou Email no banco:" + ongEmail);
-		logger.info(">>>>>> Encontrou Senha no banco:" + ongSenha);
+		try {
+			logger.info(">>>>>> Encontrou Email no banco: " + ongEmail.get().getEmail());
+			logger.info(">>>>>> Encontrou Senha no banco: " + ongSenha.get().getSenha());
+		} catch (Exception e) {
+			logger.info(e);
+		}
 		
 		if (ongEmail.isEmpty() || ongSenha.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
