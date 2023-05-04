@@ -99,6 +99,8 @@ public class APIOngController {
 		mantemOng.delete(ong.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
+	
+	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> consultaPorId(@PathVariable Long id) {
 		logger.info(">>>>>> apicontroller consulta por id chamado");
@@ -108,6 +110,7 @@ public class APIOngController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
+	
 	@CrossOrigin // desabilita o cors do spring security
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> atualiza(@PathVariable long id, @RequestBody @Valid OngDTO ongDTO,
@@ -138,16 +141,7 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
 
-	@CrossOrigin // desabilita o cors do spring security
-	@GetMapping("/email/{email}")
-	public ResponseEntity<Object> consultaPorEmail(@PathVariable String email) {
-		logger.info(">>>>>> apicontroller consulta por email chamado");
-		Optional<Ong> ong = mantemOng.consultaPorEmail(email);
-		if (ong.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email não encontrado.");
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
-	}
+
 	
 	@CrossOrigin // desabilita o cors do spring security
 	@PostMapping("/login")
