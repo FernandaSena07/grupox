@@ -72,6 +72,15 @@ public class MantemOngI implements MantemOng {
 		return repository.findById(id);
 
 	}
+	@Override
+
+	public Optional<Ong> consultaPorEmail(String email) {
+
+		logger.info(">>>>>> servico constultaPorEmail chamado");
+
+		return repository.findByEmail(email);
+
+	}
 
 	@Override
 

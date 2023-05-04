@@ -13,6 +13,8 @@ public interface MantemOng {
 	Optional<Ong> consultaPorCnpj(String cnpj);
 
 	Optional<Ong> consultaPorId(Long id);
+	
+	Optional<Ong> consultaPorEmail(String email);
 
 	Optional<Ong> save(Ong ong);
 
