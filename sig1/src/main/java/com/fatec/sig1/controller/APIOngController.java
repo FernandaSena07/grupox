@@ -67,6 +67,7 @@ public class APIOngController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
 			}
 		}
+		/*
 
 		logger.info(">>>>>> apicontroller obtem cnae => " + ongDTO.getCnae());
 		Optional<Cnae> cnae = Optional.ofNullable(mantemOng.obtemCnae(ongDTO.getCnae()));
@@ -74,7 +75,7 @@ public class APIOngController {
 		if (cnae.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNAE invalido");
 		}
-
+		*/
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(mantemOng.save(ongDTO.retornaUmCliente()));
 		} catch (Exception e) {

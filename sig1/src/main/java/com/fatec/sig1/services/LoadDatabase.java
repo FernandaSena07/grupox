@@ -26,7 +26,23 @@ public class LoadDatabase {
 	return args -> {
 		repository.deleteAll();
 		
-		Ong ong1 = new Ong("Adote sempre cabe mais um", 981151084, "03694000","1", "2", "3", "adotesemprecabemaisum@gmail.com", "456", "33.605.926/0001-60", "6920-6|02", "089527", "0191", "emailpix@gmail.com", "302.206.482-71", "Zona norte");
+		Ong ong1 = new Ong
+				(
+						"Adote sempre cabe mais um", 
+						981151084, 
+						"03694000",
+						"Casa", 
+						"O Instituto Adote Sempre Cabe Mais Um resgata cães e gatos abandonados ou em situação de maus-tratos em Jarinu (SP). Os animais acolhidos são castrados, vacinados e encaminhados para a adoção, que também é acompanhada pela ONG.", 
+						"Proteção Animal", 
+						"adotesemprecabemaisum@gmail.com", "456", 
+						"33.605.926/0001-60", 
+						"6612-6|05", 
+						"089527", 
+						"0191", 
+						"emailpixadote@gmail.com", 
+						"302.206.482-71",
+						"Zona Norte"
+				);
 		//6612-6|05
 		//7020-4|00
 		
