@@ -42,6 +42,8 @@ public class Ong {
 	
 	@NotBlank(message = "O complemento deve ser informado")
 	private String complemento;
+	
+	@Column(columnDefinition = "Longtext")
 	private String descricao;
 	private String segmento;
 	
