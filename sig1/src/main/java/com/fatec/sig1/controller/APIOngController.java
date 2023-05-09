@@ -67,15 +67,7 @@ public class APIOngController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
 			}
 		}
-		/*
 
-		logger.info(">>>>>> apicontroller obtem cnae => " + ongDTO.getCnae());
-		Optional<Cnae> cnae = Optional.ofNullable(mantemOng.obtemCnae(ongDTO.getCnae()));
-
-		if (cnae.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CNAE invalido");
-		}
-		*/
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(mantemOng.save(ongDTO.retornaUmCliente()));
 		} catch (Exception e) {
@@ -101,6 +93,7 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
 	
+	
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> consultaPorId(@PathVariable Long id) {
@@ -111,6 +104,7 @@ public class APIOngController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
+	
 	
 	@CrossOrigin // desabilita o cors do spring security
 	@PutMapping("/{id}")
@@ -140,30 +134,6 @@ public class APIOngController {
 		Optional<Ong> ong = mantemOng.atualiza(id, ongDTO.retornaUmCliente());
 
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
-	}
-
-
-	
-	@CrossOrigin // desabilita o cors do spring security
-	@PostMapping("/login")
-	public ResponseEntity<Object> login(@RequestBody @Valid OngDTO ongDTO, BindingResult result) {
-		logger.info(">>>>>> email da requisicao:" + ongDTO.getEmail());
-		logger.info(">>>>>> senha da requisicao:" + ongDTO.getSenha());
-		
-		Optional<Ong> ongEmail = mantemOng.findByEmail(ongDTO.getEmail());
-		Optional<Ong> ongSenha = mantemOng.findBySenha(ongDTO.getSenha());
-		
-		try {
-			logger.info(">>>>>> Encontrou Email no banco: " + ongEmail.get().getEmail());
-			logger.info(">>>>>> Encontrou Senha no banco: " + ongSenha.get().getSenha());
-		} catch (Exception e) {
-			logger.info(e);
-		}
-		
-		if (ongEmail.isEmpty() || ongSenha.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
-		}
-		return ResponseEntity.status(HttpStatus.OK).body("Bem vindo!");
 	}
 
 

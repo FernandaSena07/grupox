@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
+
+import com.fatec.sig1.model.Endereco;
 import com.fatec.sig1.model.MantemUserRepository;
 
 @Service
@@ -48,12 +50,16 @@ public class MantemUserI implements MantemUser {
 		return repository.findByEmail(email);
 	}
 
+	
 	@Override
 	public Optional<User> save(User user) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		
+		logger.info(">>>>>> servico save do usuário chamado ");
+
+		return Optional.ofNullable(repository.save(user));
 	}
 
+	
 	@Override
 	public void delete(Long id) {
 		logger.info(">>>>>> servico delete por id chamado");
@@ -100,14 +106,16 @@ public class MantemUserI implements MantemUser {
 
 	@Override
 	public Optional<User> findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		logger.info(">>>>>> servico consulta Email do usuario chamado");
+
+		return repository.findByEmail(email);
 	}
 
 	@Override
 	public Optional<User> findBySenha(String senha) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		logger.info(">>>>>> servico consulta Senha do usuario chamado");
+
+		return repository.findBySenha(senha);
 	}
 
 }

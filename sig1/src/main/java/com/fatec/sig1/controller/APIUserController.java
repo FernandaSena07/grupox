@@ -110,6 +110,7 @@ public class APIUserController {
 
 
 	
+	/*
 	@CrossOrigin // desabilita o cors do spring security
 	@PostMapping("/login")
 	public ResponseEntity<Object> login(@RequestBody @Valid UserDTO userDTO, BindingResult result) {
@@ -129,8 +130,8 @@ public class APIUserController {
 		if (userEmail.isEmpty() || userSenha.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
 		}
-		return ResponseEntity.status(HttpStatus.OK).body("Bem vindo!");
+		return ResponseEntity.status(HttpStatus.OK).body(userEmail.get());
 	}
-
+*/
 
 }
