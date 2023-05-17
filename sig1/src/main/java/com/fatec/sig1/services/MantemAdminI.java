@@ -121,11 +121,4 @@ public class MantemAdminI implements MantemAdmin {
 		return repository.findBySenha(senha);
 	}
 
-	@Override
-	public Optional<Admin> atualiza(long id, Admin retornaUmCliente) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	
 }

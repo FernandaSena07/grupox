@@ -54,7 +54,6 @@ public class APIUserController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro não esperado");
 		}
-
 	}
 
 	@CrossOrigin // desabilita o cors do spring security
@@ -71,7 +70,7 @@ public class APIUserController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
 		}
 		mantemUser.delete(user.get().getId());
-		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
+		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
 	}
 	
 	@CrossOrigin // desabilita o cors do spring security
@@ -108,30 +107,5 @@ public class APIUserController {
 		return ResponseEntity.status(HttpStatus.OK).body(user.get());
 	}
 
-
-	
-	/*
-	@CrossOrigin // desabilita o cors do spring security
-	@PostMapping("/login")
-	public ResponseEntity<Object> login(@RequestBody @Valid UserDTO userDTO, BindingResult result) {
-		logger.info(">>>>>> email da requisicao:" + userDTO.getEmail());
-		logger.info(">>>>>> senha da requisicao:" + userDTO.getSenha());
-		
-		Optional<User> userEmail = mantemUser.findByEmail(userDTO.getEmail());
-		Optional<User> userSenha = mantemUser.findBySenha(userDTO.getSenha());
-		
-		try {
-			logger.info(">>>>>> Encontrou Email no banco: " + userEmail.get().getEmail());
-			logger.info(">>>>>> Encontrou Senha no banco: " + userSenha.get().getSenha());
-		} catch (Exception e) {
-			logger.info(e);
-		}
-		
-		if (userEmail.isEmpty() || userSenha.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(userEmail.get());
-	}
-*/
 
 }

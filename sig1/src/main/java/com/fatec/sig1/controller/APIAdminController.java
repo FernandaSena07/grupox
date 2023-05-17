@@ -50,14 +50,6 @@ public class APIAdminController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
 
-		/*if (ongDTO.getCnpj() != null) {
-			if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
-				logger.info(">>>>>> apicontroller consultaporcnpj CNPJ ja cadastrado");
-				return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
-			}
-		}*/
-		
-
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(mantemAdmin.save(adminDTO.retornaUmCliente()));
 		} catch (Exception e) {
@@ -113,13 +105,6 @@ public class APIAdminController {
 		if (c.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
 		}
-
-		/*if (adminDTO.getCep() != null) {
-			Optional<Endereco> e = Optional.ofNullable(mantemAdmin.obtemEndereco(adminDTO.getCep()));
-			if (e.isEmpty()) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CEP não localizado.");
-			}
-		}*/
 
 		Optional<Admin> admin = mantemAdmin.atualiza(id, adminDTO.retornaUmCliente());
 

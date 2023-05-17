@@ -116,12 +116,9 @@ public class MantemOngI implements MantemOng {
 
 		Endereco endereco = obtemEndereco(ong.getCep());
 
-		// Colocar if para verificar quantas informações tem??
-		// Dependendo de quantas tem chama outro construtor
-
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(),
 				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae(), 
-				ong.getContaCorrente(),ong.getAgencia(), ong.getPix(), ong.getCpf(), ong.getRegiao());
+				ong.getContaCorrente(),ong.getAgencia(),ong.getBanco() , ong.getPix(), ong.getCpf(), ong.getRegiao());
 
 		Ong ongGetId = this.repository.findById(id).get();
 
@@ -182,6 +179,10 @@ public class MantemOngI implements MantemOng {
 		
 		if (ongModificado.getAgencia() == null) {
 			ongModificado.setAgencia(ongGetId.getAgencia());
+		}
+		
+		if (ongModificado.getBanco() == null) {
+			ongModificado.setBanco(ongGetId.getBanco());
 		}
 		
 		if (ongModificado.getPix() == null) {

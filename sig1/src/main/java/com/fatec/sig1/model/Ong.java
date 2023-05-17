@@ -37,7 +37,6 @@ public class Ong {
 	private String endereco;
 	
 	@NotBlank(message = "O CNAE é obrigatório")
-    @Column(unique = true)
     private String cnae;
 	
 	@NotBlank(message = "O complemento deve ser informado")
@@ -59,6 +58,7 @@ public class Ong {
 	
 	private String contaCorrente;
 	private String agencia;
+	private String banco;
 	private String pix;
 	private String Cpf;
 	
@@ -66,7 +66,7 @@ public class Ong {
 	
 	public Ong(String nome, long telefone, String cep, String complemento, 
 			String descricao, String segmento, String email, String senha, String cnpj, 
-			String cnae, String contaCorrente, String agencia, String pix, String Cpf, String regiao) {
+			String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -79,6 +79,7 @@ public class Ong {
 		this.cnae = cnae;
 		this.contaCorrente = contaCorrente;
 		this.agencia = agencia;
+		this.banco = banco;
 		this.pix = pix;
 		this.Cpf = Cpf;
 		this.regiao = regiao;
@@ -229,6 +230,14 @@ public class Ong {
 
 	public void setRegiao(String regiao) {
 		this.regiao = regiao;
+	}
+
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
 	}
 	
 	
