@@ -23,10 +23,14 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fatec.sig1.model.MantemAdminRepository;
+import com.fatec.sig1.model.Ong;
+import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.Admin;
 import com.fatec.sig1.model.AdminDTO;
 import com.fatec.sig1.services.MantemAdmin;
 import com.fatec.sig1.services.MantemAdminI;
+import com.fatec.sig1.services.MantemOng;
+import com.fatec.sig1.services.MantemUser;
 
 
 @RestController
@@ -111,4 +115,32 @@ public class APIAdminController {
 		return ResponseEntity.status(HttpStatus.OK).body(admin.get());
 	}
 
+	@Autowired
+	MantemUser mantemUser;
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@DeleteMapping("deletarUsuario/{id}")
+	public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
+		Optional<User> user = mantemUser.consultaPorId(id);
+		if (user.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		}
+		mantemUser.delete(user.get().getId());
+		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
+	}
+	
+	@Autowired
+	MantemOng mantemOng;
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@DeleteMapping("deletarOng/{id}")
+	public ResponseEntity<Object> deleteONG(@PathVariable(value = "id") Long id) {
+		Optional<Ong> ong = mantemOng.consultaPorId(id);
+		if (ong.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		}
+		mantemOng.delete(ong.get().getId());
+		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
+	}
+	
 }
