@@ -182,7 +182,296 @@ public class LoadDatabase {
 		ong7.setEndereco("Praça Dom Duarte Leopoldo, 137");
 		log.info("Preloading " + repository.save(ong7));
 		
+		Ong ong8 = new Ong
+				(
+						"Obra Social São Mateus", 
+						1129195894, 
+						"03959030",
+						"Casa", 
+						"Fundada em 09 de Setembro de 1964, nasceu da preocupação de um grupo da Comunidade de São Mateus com a população do bairro, que crescia gradativamente e desprovida de recursos mínimos necessários como: água, luz, saneamento básico, transporte e alimentação.", 
+						"Cidadania", 
+						"sede@obrasocialsaomateus.org", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Santander",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong8.setEndereco("Rua Alessandro Giulio Dell'Aringa, 126");
+		log.info("Preloading " + repository.save(ong8));
+		
+		Ong ong9 = new Ong
+				(
+						"Rosa Mulher - Grupo de Apoio - Câncer de Mama", 
+						1120129634, 
+						"03963050",
+						"Casa", 
+						"Somos uma equipe formada por mulheres com histórias diferentes. Entre nós, temos psicóloga, assistente social, mulheres que estão enfrentando a batalha pela vida, outras que passaram e venceram o câncer de mama e outras simpatizantes da causa. Acreditamos que nossos caminhos não se cruzaram por acaso, por isso, decidimos nos unir para dar apoio, carinho e atenção à MULHER que enfrenta a luta contra o câncer.", 
+						"Gênero e diversidade", 
+						"apoio@associacaorosamulher.org", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Santander",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong9.setEndereco("R. Dr. José Cioffi, 475");
+		log.info("Preloading " + repository.save(ong9));
+		
+		Ong ong10 = new Ong
+				(
+						"Associação de apoio humanitário", 
+						1120129634, //11997801429
+						"04232000",
+						"Casa", 
+						"A Ong Associação de Apoio Humanitário, AAH, é uma organização criada com o intuito de arrecadar fundos e doações para famílias que estão passando por necessidades e também para moradores de rua.", 
+						"Cidadania", 
+						"contato@ongaah.com.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Santander",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong10.setEndereco("Estr. das Lágrimas, 1712");
+		log.info("Preloading " + repository.save(ong10));
+		
+		Ong ong11 = new Ong
+				(
+						"ONG Banco de Alimentos", 
+						1120129634, //11950290006
+						"01235010",
+						"Casa", 
+						"Somos o resultado da visão pioneira de nossa fundadora, a economista Luciana Chinaglia Quintão, e a soma de esforços de cidadãos, empresas e indústrias alimentícias dedicadas a reduzir o desperdício de alimentos e a combater a fome.", 
+						"Cidadania", 
+						"vanessa.godoy@printeccomunicacao.com.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Santander",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Oeste",
+						"14/05/2023"
+				);
+		ong11.setEndereco("Rua Atibaia, 218");
+		log.info("Preloading " + repository.save(ong11));
+		
+		Ong ong12 = new Ong
+				(
+						"Agente Ajuda", 
+						1120129634, //Não tem número de tel
+						"04563013",
+						"Casa", 
+						"Somos uma causa.Somos um sentimento.Somos PESSOAS!", 
+						"Cidadania", 
+						"contato@agenteajuda.org.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Sul",
+						"14/05/2023"
+				);
+		ong12.setEndereco("Av. Padre Antônio José dos Santos, 1140");
+		log.info("Preloading " + repository.save(ong12));
+		
+		Ong ong13 = new Ong
+				(
+						"A Make-A-Wish Brasil", 
+						1120129634, //(11) 5081.3601
+						"04583911",
+						"Casa", 
+						"É uma das 39 afiliadas da Make-A-Wish® International, uma das instituições de apoio à criança mais conhecidas e respeitadas no mundo.", 
+						"Cidadania", 
+						"enquiries@makeawish.org.au", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Sul",
+						"14/05/2023"
+				);
+		ong13.setEndereco("R. Álvaro Rodrigues, 152");
+		log.info("Preloading " + repository.save(ong13));
+		
+		Ong ong14 = new Ong
+				(
+						"Associação Crescer Sempre", 
+						1120129634, //(11) 3744-8573
+						"05660000",
+						"Casa", 
+						"Somos uma Associação sem fins lucrativos localizada na comunidade de Paraisópolis, em São Paulo, com cinco projetos principais: uma escola regular de Educação Infantil e de Ensino Fundamental II, uma escola integral de Ensino Médio; Cursos Profissionalizantes e Biblioteca aberta à comunidade.", 
+						"Cidadania", 
+						"contato@contato.org", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Sul",
+						"14/05/2023"
+				);
+		ong14.setEndereco("Rua Pasquale Gallupi, 928");
+		log.info("Preloading " + repository.save(ong14));
+		
+		Ong ong15 = new Ong
+				(
+						"APOIO – Associação de Auxílio Mútuo da Região Leste", 
+						1120129634, //55 (11) 3361-5900
+						"01214100",
+						"Casa", 
+						"APOIO – Associação de Auxílio Mútuo da Região Leste iniciou suas atividades em 1992  e foi fundada em 18/12/1993, organização civil sem fins lucrativos, reconhecida de Utilidade Pública Federal, resultou de um grupo formado por pessoas de vários segmentos sociais preocupados com a pobreza de amplas camadas populares. O contato permanente com famílias de baixa renda impulsionou a organização a participar em várias atividades de apoio às pessoas em situação de vulnerabilidade social.", 
+						"Cidadania", 
+						"apoio@apoio-sp.org.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong15.setEndereco("Av. Duque de Caxias, 325");
+		log.info("Preloading " + repository.save(ong15));
+		
+		Ong ong16 = new Ong
+				(
+						"ONG Zoé - Saúde para quem cuida da Floresta Amazônica", 
+						1120129634, //55(11)3231-0800
+						"01308000",
+						"Casa", 
+						"A ONG ZOÉ é uma associação sem fins lucrativos que apoia populações amazônicas com acesso limitado aos cuidados com a saúde.", 
+						"Cidadania", 
+						"contato@ongzoe.org", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong16.setEndereco("R. Barata Ribeiro, 414");
+		log.info("Preloading " + repository.save(ong16));
+		
+		Ong ong17 = new Ong
+				(
+						"Pela Vidda SP", 
+						1120129634, //(11) 3259-2149
+						"01223010",
+						"Casa", 
+						"O Grupo Pela Vidda/SP (Valorização, Integração e Dignidade do Doente de aids) é uma ONG sem fins lucrativos voltada a pessoas vivendo e convivendo com HIV/AIDS independente de gênero, orientação sexual, orientação político-partidária ou religiosa.", 
+						"Saúde", 
+						"gpvsp@uol.com.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong17.setEndereco("Rua Gen. Jardim, 566");
+		log.info("Preloading " + repository.save(ong17));
+		
+		Ong ong18 = new Ong
+				(
+						"Grupo da Sopa / ONG Um Ato de Amor", 
+						1120129634, //(11) 96332-4165
+						"03110010",
+						"Casa", 
+						"O Grupo da Sopa foi criado em 1996, por iniciativa de um grupo de amigos que resolveu dedicar algumas horas semanais para ajudar o próximo. Durante os dois primeiros anos, esses amigos preparavam sopa para distribuir nas ruas de São Paulo.", 
+						"Cidadania", 
+						"contato@grupodasopa.org", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong18.setEndereco("R. Borges de Figueiredo, 86");
+		log.info("Preloading " + repository.save(ong18));
+		
+		Ong ong19 = new Ong
+				(
+						"ONG Desejando o Bem", 
+						1120129634, //+55 11 2594-5268
+						"04763060",
+						"Casa", 
+						"O desejo de ajudar crianças carentes surgiu em 2014, quando a idealizadora Simone e sua filha Bia conheceram a história de uma família que acabara de dar as boa-vindas a trigêmeas e que necessitava de enxoval não só para uma, mas para três meninas!", 
+						"Cidadania", 
+						"atendimento@desejandoobem.com.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Leste",
+						"14/05/2023"
+				);
+		ong19.setEndereco("R. Amaro Leite, 88");
+		log.info("Preloading " + repository.save(ong19));
+		
+		Ong ong20 = new Ong
+				(
+						"ONG Brasil Eco Planetário", 
+						1120129634, //(11) 99970-1819
+						"04776100",
+						"Casa", 
+						"Trabalhar pela melhoria da relação entre o ser humano, sociedade e a natureza e a promoção da cultura da paz.", 
+						"Meio ambiente", 
+						"contato@contato.com.br", "FazUmaBoaAcaoRapa123455", 
+						"90.111.124/1102-00", 
+						"9430-8|00", 
+						"112123", 
+						"9901", 
+						"Banco Itaú",
+						"contatoPix@cuidademim.com.br", 
+						"991.001.182-71",
+						"Zona Sul",
+						"14/05/2023"
+				);
+		ong20.setEndereco("Av. Engenheiro José Salles, 333");
+		log.info("Preloading " + repository.save(ong20));
+		
 		};
+		
+		
+		
 	}
 	
 	@Autowired
