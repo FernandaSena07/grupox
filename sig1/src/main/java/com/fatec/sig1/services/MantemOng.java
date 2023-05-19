@@ -9,8 +9,14 @@ import com.fatec.sig1.model.Endereco;
 public interface MantemOng {
 
 	List<Ong> consultaTodos();
-	
-	List<Ong> todasAsONGdoCENTRO();
+
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	Long todasAsONGPorRegiao(String regiao);
+
+	Long todasAsONGcadastradas();
+
+	Long todasAsONGPorSegmento(String segmento);
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
 
 	Optional<Ong> consultaPorCnpj(String cnpj);
 

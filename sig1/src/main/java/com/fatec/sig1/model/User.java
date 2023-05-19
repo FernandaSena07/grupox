@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "usuario")
@@ -31,7 +33,8 @@ public class User {
 
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
-	
+
+	private String dataCadastro;
 	
 	
 	public User(String nome, String sobrenome, String email, String senha) {
@@ -39,6 +42,15 @@ public class User {
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
+		setDataCadastro(new DateTime());
+	}
+
+	public User(String nome, String sobrenome, String email, String senha, String dataCadastro) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.senha = senha;
+		this.dataCadastro = dataCadastro;
 	}
 
 	public User(String nome, String email, String senha) {
@@ -90,4 +102,16 @@ public class User {
 		this.senha = senha;
 	}
 
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(DateTime dataAtual) {
+		this.dataCadastro = obtemDataAtual(dataAtual);
+	}
+
+	public String obtemDataAtual(DateTime dataAtual) {
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
+		return dataAtual.toString(fmt);
+	}
 }

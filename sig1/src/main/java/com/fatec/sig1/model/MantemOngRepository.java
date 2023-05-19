@@ -27,9 +27,15 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
     Optional<Ong> findByEmail(String email);
     
     Optional<Ong> findBySenha(String senha);
-    
-    //SELECT count(id) FROM ONG where REGIAO = 'Zona Norte'
-    @Query(value = "SELECT * FROM ONG WHERE REGIAO = 'Centro'", nativeQuery = true)
-    List<Ong> todasAsONGdoCENTRO();
-    
+
+    // ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+
+    //SELECT count(id)  as ONG_DA_ZONA_NORTE FROM ONG  where REGIAO = 'Zona Norte' 
+    // SELECT t1.ONG_ZONA_NORTE, t2.ONG_CENTRO from (select count(id) as ONG_ZONA_NORTE from ong where REGIAO = 'Zona Norte' ) as t1, (select count(id) as ONG_CENTRO from ong where REGIAO = 'Centro' ) as t2
+    //@Query(value = "SELECT count(*) as ONG_DA_ZONA_NORTE FROM ONG  where REGIAO = 'Zona Norte'", nativeQuery = true)
+    Long countByRegiao(String regiao);
+
+    long count();
+
+    Long countBySegmento(String segmento);
 }

@@ -43,7 +43,8 @@ public class LoadDatabase {
 						"Bradesco",
 						"emailpixadote@gmail.com", 
 						"302.206.482-71",
-						"Zona Norte"
+						"Zona Norte",
+						"10/01/2023"
 				);
 		ong1.setEndereco("Aguia de Haia");
 		log.info("Preloading " + repository.save(ong1));
@@ -64,7 +65,8 @@ public class LoadDatabase {
 						"Bradesco",
 						"esperanzaProjeto@gmail.com", 
 						"102.206.482-71",
-						"Zona Leste"
+						"Zona Leste",
+						"30/01/2023"
 				);
 		ong2.setEndereco("Guilherme de Aguiar");
 		log.info("Preloading " + repository.save(ong2));
@@ -85,7 +87,8 @@ public class LoadDatabase {
 						"Nubank",
 						"67084387776011847635893856138508", 
 						"200.006.182-71",
-						"Zona Oeste"
+						"Zona Oeste",
+						"29/05/2023"
 				);
 		ong3.setEndereco("Mourato Coelho");
 		log.info("Preloading " + repository.save(ong3));
@@ -106,7 +109,8 @@ public class LoadDatabase {
 						"Ítau",
 						"GraoDaVida2000@gmail.com", 
 						"221.346.182-71",
-						"Zona Sul"
+						"Zona Sul",
+						"10/01/2023"
 				);
 		ong4.setEndereco("Olímpio Carr Ribeiro");
 		log.info("Preloading " + repository.save(ong4));
@@ -128,7 +132,8 @@ public class LoadDatabase {
 						"Banco do Brasil",
 						"contato@nosdobem.org", 
 						"222.121.182-71",
-						"Centro"
+						"Centro",
+						"15/01/2023"
 				);
 		ong5.setEndereco("Rua São Bento, 329");
 		log.info("Preloading " + repository.save(ong5));
@@ -149,7 +154,8 @@ public class LoadDatabase {
 						"Caixa",
 						"contato@korambiental.com.br", 
 						"111.121.182-71",
-						"Zona Sul"
+						"Zona Sul",
+						"29/04/2023"
 				);
 		ong6.setEndereco("Bento Branco de Andrade Filho");
 		log.info("Preloading " + repository.save(ong6));
@@ -170,7 +176,8 @@ public class LoadDatabase {
 						"Santander",
 						"contatoPix@cuidademim.com.br", 
 						"991.001.182-71",
-						"Zona Leste"
+						"Zona Leste",
+						"14/05/2023"
 				);
 		ong7.setEndereco("Praça Dom Duarte Leopoldo, 137");
 		log.info("Preloading " + repository.save(ong7));
@@ -186,7 +193,7 @@ public class LoadDatabase {
 		return args -> {
 		repository.deleteAll();
 				
-		User user1 = new User("Diogo", "Lima","DiogoLima50@gmail.com", "12345");
+		User user1 = new User("Diogo", "Lima","DiogoLima50@gmail.com", "12345", "22/05/2023");
 		log.info("Preloading " + repository.save(user1));
 				
 		};

@@ -51,15 +51,24 @@ public class MantemOngI implements MantemOng {
 
 		return repository.findAll();
 	}
-	
-	
-	public List<Ong> todasAsONGdoCENTRO() {
 
-		logger.info(">>>>>> Pesquisando todas as ongs do centro");
-
-		return repository.todasAsONGdoCENTRO();
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	public Long todasAsONGPorRegiao(String regiao) {
+		logger.info(">>>>>> Pesquisando todas as ongs por regiao");
+		//String regiao = "Zona Leste";
+		return repository.countByRegiao(regiao);
 	}
-	
+
+	public Long todasAsONGcadastradas() {
+		logger.info(">>>>>> Pesquisando todas as ongs");
+		return repository.count();
+	}
+
+	public Long todasAsONGPorSegmento(String segmento) {
+		logger.info(">>>>>> Pesquisando todas as ongs por segmento");
+		return repository.countBySegmento(segmento);
+	}
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
 
 	@Override
 

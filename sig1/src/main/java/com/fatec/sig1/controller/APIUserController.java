@@ -107,5 +107,12 @@ public class APIUserController {
 		return ResponseEntity.status(HttpStatus.OK).body(user.get());
 	}
 
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/todosUsuarios")
+	public ResponseEntity<Long> relatorioTodosOsUsuarios() {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemUser.todosOsUsuarioCadastrados());
+	}
 
 }

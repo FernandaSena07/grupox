@@ -12,6 +12,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 @Entity
 public class Ong {
@@ -61,6 +64,7 @@ public class Ong {
 	private String banco;
 	private String pix;
 	private String Cpf;
+	private String dataCadastro;
 	
 	
 	
@@ -83,6 +87,29 @@ public class Ong {
 		this.pix = pix;
 		this.Cpf = Cpf;
 		this.regiao = regiao;
+		setDataCadastro(new DateTime());
+	}
+
+	public Ong(String nome, long telefone, String cep, String complemento,
+			   String descricao, String segmento, String email, String senha, String cnpj,
+			   String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao, String dataCadastro) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.cep = cep;
+		this.complemento = complemento;
+		this.descricao = descricao;
+		this.segmento = segmento;
+		this.email = email;
+		this.senha = senha;
+		this.cnpj = cnpj;
+		this.cnae = cnae;
+		this.contaCorrente = contaCorrente;
+		this.agencia = agencia;
+		this.banco = banco;
+		this.pix = pix;
+		this.Cpf = Cpf;
+		this.regiao = regiao;
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Ong(String nome, String email, String senha, String cnpj, String cnae) {
@@ -239,7 +266,19 @@ public class Ong {
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
-	
+
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(DateTime dataAtual) {
+		this.dataCadastro = obtemDataAtual(dataAtual);
+	}
+
+	public String obtemDataAtual(DateTime dataAtual) {
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
+		return dataAtual.toString(fmt);
+	}
 	
 }
 	

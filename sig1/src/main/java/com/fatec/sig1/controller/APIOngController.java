@@ -135,11 +135,27 @@ public class APIOngController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
-	
+
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
 	@CrossOrigin // desabilita o cors do spring security
-	@GetMapping("/teste")
-	public ResponseEntity<List<Ong>> consultaTodos2() {
-		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
+	@GetMapping("/buscaRegiao/{Zona}")
+	public ResponseEntity<Long> relatorioTotalPorRegiao(@PathVariable String Zona) {
+		//return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
+		return  ResponseEntity.ok(mantemOng.todasAsONGPorRegiao(Zona));
+	}
+
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/todasAsOngs")
+	public ResponseEntity<Long> relatorioTodasASONG() {
+		//return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
+		return  ResponseEntity.ok(mantemOng.todasAsONGcadastradas());
+	}
+
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/buscaSegmento/{seg}")
+	public ResponseEntity<Long> relatorioTotalPorSegmento(@PathVariable String seg) {
+		//return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
+		return  ResponseEntity.ok(mantemOng.todasAsONGPorSegmento(seg));
 	}
 
 }

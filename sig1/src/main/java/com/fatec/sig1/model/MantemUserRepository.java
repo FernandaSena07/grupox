@@ -26,4 +26,8 @@ public interface MantemUserRepository extends JpaRepository<User, Long> {
 	    
 	    Optional<User> findBySenha(String senha);
 
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	long count();
+
+
 }

@@ -21,4 +21,9 @@ public interface MantemUser {
     Optional<User> findByEmail(String email);
     
     Optional<User> findBySenha(String senha);
+
+	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+
+	Long todosOsUsuarioCadastrados();
+
 }
