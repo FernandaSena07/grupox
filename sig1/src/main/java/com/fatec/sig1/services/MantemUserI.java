@@ -34,14 +34,14 @@ public class MantemUserI implements MantemUser {
 		return repository.findAll();
 	}
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	public Long todosOsUsuarioCadastrados() {
 		logger.info(">>>>>> Pesquisando todas as ongs");
 		return repository.count();
 	}
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	@Override
 	public Optional<User> consultaPorId(Long id) {

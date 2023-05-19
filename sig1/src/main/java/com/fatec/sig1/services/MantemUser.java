@@ -22,7 +22,7 @@ public interface MantemUser {
     
     Optional<User> findBySenha(String senha);
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	Long todosOsUsuarioCadastrados();
 

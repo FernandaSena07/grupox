@@ -107,7 +107,7 @@ public class APIUserController {
 		return ResponseEntity.status(HttpStatus.OK).body(user.get());
 	}
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/todosUsuarios")

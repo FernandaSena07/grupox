@@ -52,7 +52,7 @@ public class MantemOngI implements MantemOng {
 		return repository.findAll();
 	}
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	public Long todasAsONGPorRegiao(String regiao) {
 		logger.info(">>>>>> Pesquisando todas as ongs por regiao");
 		//String regiao = "Zona Leste";
@@ -68,7 +68,7 @@ public class MantemOngI implements MantemOng {
 		logger.info(">>>>>> Pesquisando todas as ongs por segmento");
 		return repository.countBySegmento(segmento);
 	}
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	@Override
 

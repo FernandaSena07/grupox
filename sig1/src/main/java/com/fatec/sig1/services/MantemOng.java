@@ -10,13 +10,13 @@ public interface MantemOng {
 
 	List<Ong> consultaTodos();
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	Long todasAsONGPorRegiao(String regiao);
 
 	Long todasAsONGcadastradas();
 
 	Long todasAsONGPorSegmento(String segmento);
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	Optional<Ong> consultaPorCnpj(String cnpj);
 

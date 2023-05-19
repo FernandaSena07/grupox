@@ -136,26 +136,23 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
 	}
 
-	// ----------------------------------------------------- PARA O RELATÓRIO -----------------------------------------------------
+	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/buscaRegiao/{Zona}")
 	public ResponseEntity<Long> relatorioTotalPorRegiao(@PathVariable String Zona) {
-		//return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
-		return  ResponseEntity.ok(mantemOng.todasAsONGPorRegiao(Zona));
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorRegiao(Zona));
 	}
 
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/todasAsOngs")
 	public ResponseEntity<Long> relatorioTodasASONG() {
-		//return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
-		return  ResponseEntity.ok(mantemOng.todasAsONGcadastradas());
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGcadastradas());
 	}
 
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/buscaSegmento/{seg}")
 	public ResponseEntity<Long> relatorioTotalPorSegmento(@PathVariable String seg) {
-		//return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGdoCENTRO());
-		return  ResponseEntity.ok(mantemOng.todasAsONGPorSegmento(seg));
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorSegmento(seg));
 	}
 
 }
