@@ -3,6 +3,7 @@ package com.fatec.sig1.model;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
  
 /**
@@ -26,4 +27,9 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
     Optional<Ong> findByEmail(String email);
     
     Optional<Ong> findBySenha(String senha);
+    
+    //SELECT count(id) FROM ONG where REGIAO = 'Zona Norte'
+    @Query(value = "SELECT * FROM ONG WHERE REGIAO = 'Centro'", nativeQuery = true)
+    List<Ong> todasAsONGdoCENTRO();
+    
 }

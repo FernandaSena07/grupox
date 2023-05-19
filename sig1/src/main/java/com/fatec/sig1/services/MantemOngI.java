@@ -50,8 +50,16 @@ public class MantemOngI implements MantemOng {
 		logger.info(">>>>>> servico consultaTodos chamado");
 
 		return repository.findAll();
-
 	}
+	
+	
+	public List<Ong> todasAsONGdoCENTRO() {
+
+		logger.info(">>>>>> Pesquisando todas as ongs do centro");
+
+		return repository.todasAsONGdoCENTRO();
+	}
+	
 
 	@Override
 

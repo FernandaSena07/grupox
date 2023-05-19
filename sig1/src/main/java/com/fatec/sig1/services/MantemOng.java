@@ -9,6 +9,8 @@ import com.fatec.sig1.model.Endereco;
 public interface MantemOng {
 
 	List<Ong> consultaTodos();
+	
+	List<Ong> todasAsONGdoCENTRO();
 
 	Optional<Ong> consultaPorCnpj(String cnpj);
 
