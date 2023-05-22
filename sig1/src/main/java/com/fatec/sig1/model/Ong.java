@@ -31,7 +31,6 @@ public class Ong {
 	
 	@CNPJ
 	@NotBlank(message = "O CNPJ é obrigatório")
-	@Column(unique = true) // nao funciona com @Valid tem que tratar na camada de persistencia
 	private String cnpj;
 	
 	@NotBlank(message = "O CEP é obrigatório.")

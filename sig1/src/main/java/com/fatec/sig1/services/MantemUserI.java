@@ -1,5 +1,6 @@
 package com.fatec.sig1.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
@@ -8,6 +9,9 @@ import com.fatec.sig1.model.User;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fatec.sig1.model.Endereco;
 import com.fatec.sig1.model.MantemUserRepository;
+import com.fatec.sig1.model.Ong;
 
 @Service
 public class MantemUserI implements MantemUser {
@@ -34,6 +39,7 @@ public class MantemUserI implements MantemUser {
 		return repository.findAll();
 	}
 
+	
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	public Long todosOsUsuarioCadastrados() {
@@ -85,14 +91,14 @@ public class MantemUserI implements MantemUser {
 		// Colocar if para verificar quantas informações tem??
 		// Dependendo de quantas tem chama outro construtor
 
-		User userModificado = new User(user.getNome(), user.getSobrenome(),user.getEmail(), user.getSenha());
+		User userModificado = new User(user.getNome(), user.getSobrenome(),user.getEmail(), user.getSenha(), user.getDataCadastro() ,user.getFavoritos());
 
 		User userGetId = this.repository.findById(id).get();
 
 		userModificado.setId(id);
 		
 		logger.info(
-				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id => " + userModificado.getId());
+				">>>>>> 2. servico atualiza informações do usuario => " + userModificado.getId());
 
 		if (userModificado.getNome() == null) {
 			userModificado.setNome(userGetId.getNome());
@@ -108,6 +114,13 @@ public class MantemUserI implements MantemUser {
 
 		if (userModificado.getSenha() == null) {
 			userModificado.setSenha(userGetId.getSenha());
+		}
+		
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
+		String dataAtual = new DateTime().toString(fmt);
+
+		if (userModificado.getDataCadastro().equalsIgnoreCase(dataAtual)) {
+			userModificado.setDataCadastro(userGetId.getDataCadastro());
 		}
 		
 		return Optional.ofNullable(repository.save(userModificado));
@@ -126,6 +139,8 @@ public class MantemUserI implements MantemUser {
 
 		return repository.findBySenha(senha);
 	}
+
+
 
 }
 

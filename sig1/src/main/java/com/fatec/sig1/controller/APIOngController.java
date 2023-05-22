@@ -25,9 +25,12 @@ import org.springframework.web.client.RestTemplate;
 import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
 import com.fatec.sig1.services.MantemOngI;
+import com.fatec.sig1.services.MantemUser;
 import com.fatec.sig1.model.MantemOngRepository;
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.OngDTO;
+import com.fatec.sig1.model.User;
+import com.fatec.sig1.model.UserDTO;
 import com.fatec.sig1.services.MantemOng;
 
 @RestController
@@ -40,6 +43,7 @@ public class APIOngController {
 
 	Ong ong;
 	Logger logger = LogManager.getLogger(this.getClass());
+	
 
 	@CrossOrigin // desabilita o cors do spring security
 	@PostMapping
@@ -155,4 +159,26 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorSegmento(seg));
 	}
 
+	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
+	
+	@Autowired
+	MantemUser mantemUser;
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@PostMapping("/favoritos/{id}")
+	public ResponseEntity<Object> buscarFavoritos(@PathVariable(value = "id") Long id, @RequestBody @Valid UserDTO userDTO, BindingResult result) {
+		
+		Optional<User> user = mantemUser.consultaPorId(id);
+		if (user.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		}
+		List<Long> favoritosDoUsuario = user.get().getFavoritos();
+		
+		if (favoritosDoUsuario.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não tem favoritos cadastrados");
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.ongsFavoritas(favoritosDoUsuario));
+		
+	}
 }

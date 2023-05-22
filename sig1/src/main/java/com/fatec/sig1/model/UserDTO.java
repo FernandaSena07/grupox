@@ -1,8 +1,13 @@
 package com.fatec.sig1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Pattern;
+
+import jakarta.persistence.OneToMany;
 
 
 public class UserDTO {
@@ -18,14 +23,15 @@ public class UserDTO {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 		
-	@NotBlank(message = "A senha é obrigatório")
+	private List<Long> favoritos = new ArrayList<>();
 
 
-	public UserDTO(String nome, String sobrenome,String email, String senha) {
+	public UserDTO(String nome, String sobrenome,String email, String senha, List<Long> favoritos) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
+		this.setFavoritos(favoritos);
 	}
 		
 	public UserDTO() {
@@ -64,8 +70,18 @@ public class UserDTO {
 		this.senha = senha;
 	}
 	
-	public User retornaUmCliente() {
-		return new User(nome, sobrenome, email, senha);
+
+	public List<Long> getFavoritos() {
+		return favoritos;
 	}
+
+	public void setFavoritos(List<Long> favoritos) {
+		this.favoritos = favoritos;
+	}
+	
+	public User retornaUmCliente() {
+		return new User(nome, sobrenome, email, senha, favoritos);
+	}
+
 }
 

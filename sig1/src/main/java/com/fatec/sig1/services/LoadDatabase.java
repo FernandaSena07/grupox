@@ -8,6 +8,11 @@ import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.Admin;
 import com.fatec.sig1.model.MantemAdminRepository;
 import com.fatec.sig1.model.MantemOngRepository;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.slf4j.Logger;
@@ -481,9 +486,15 @@ public class LoadDatabase {
 	CommandLineRunner initDatabaseUser(MantemUserRepository repository, MantemUser repoCliente) {
 		return args -> {
 		repository.deleteAll();
-				
-		User user1 = new User("Diogo", "Lima","DiogoLima50@gmail.com", "12345", "22/05/2023");
+		
+		List<Long> user1Favoritos = new ArrayList<>();
+		User user1 = new User("Diogo", "Lima","DiogoLima50@gmail.com", "12345", "22/05/2023",user1Favoritos) ;
 		log.info("Preloading " + repository.save(user1));
+		
+		List<Long> user2Favoritos = new ArrayList<>(Arrays.asList((long) 1, (long) 5));
+		
+		User user2 = new User("Bianca", "Jesus","biancaJesus299@gmail.com", "98765*A", "22/03/2023",user2Favoritos) ;
+		log.info("Preloading " + repository.save(user2));
 				
 		};
 

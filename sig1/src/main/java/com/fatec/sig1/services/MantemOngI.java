@@ -1,5 +1,6 @@
 package com.fatec.sig1.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +13,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import com.fatec.sig1.model.Ong;
+import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.MantemOngRepository;
 import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
@@ -52,6 +54,18 @@ public class MantemOngI implements MantemOng {
 		return repository.findAll();
 	}
 
+	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
+	
+	@Override
+	public List<Ong> ongsFavoritas(List<Long> favoritos) {
+		logger.info(">>>>>> servico buscandos todas as ONG Favoritas");
+
+		return repository.getOngFavoritos(favoritos);
+	}
+	
+	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
+	
+	
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	public Long todasAsONGPorRegiao(String regiao) {
 		logger.info(">>>>>> Pesquisando todas as ongs por regiao");

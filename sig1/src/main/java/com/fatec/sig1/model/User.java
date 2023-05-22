@@ -1,5 +1,8 @@
 package com.fatec.sig1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import org.joda.time.DateTime;
@@ -36,21 +39,25 @@ public class User {
 
 	private String dataCadastro;
 	
+	private List<Long> favoritos = new ArrayList<>();
 	
-	public User(String nome, String sobrenome, String email, String senha) {
+	
+	public User(String nome, String sobrenome, String email, String senha, List<Long> favoritos) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
+		this.setFavoritos(favoritos);
 		setDataCadastro(new DateTime());
 	}
 
-	public User(String nome, String sobrenome, String email, String senha, String dataCadastro) {
+	public User(String nome, String sobrenome, String email, String senha, String dataCadastro, List<Long> favoritos) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
 		this.dataCadastro = dataCadastro;
+		this.setFavoritos(favoritos);
 	}
 
 	public User(String nome, String email, String senha) {
@@ -105,11 +112,23 @@ public class User {
 	public String getDataCadastro() {
 		return dataCadastro;
 	}
-
+	
 	public void setDataCadastro(DateTime dataAtual) {
 		this.dataCadastro = obtemDataAtual(dataAtual);
 	}
+	
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
+	public List<Long> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(List<Long> favoritos) {
+		this.favoritos = favoritos;
+	}
+	
 	public String obtemDataAtual(DateTime dataAtual) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
 		return dataAtual.toString(fmt);

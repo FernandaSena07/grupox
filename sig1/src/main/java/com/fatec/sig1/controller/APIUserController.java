@@ -24,6 +24,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fatec.sig1.model.MantemUserRepository;
+import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.UserDTO;
 import com.fatec.sig1.services.MantemUser;
@@ -114,5 +115,4 @@ public class APIUserController {
 	public ResponseEntity<Long> relatorioTodosOsUsuarios() {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemUser.todosOsUsuarioCadastrados());
 	}
-
 }
