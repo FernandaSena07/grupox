@@ -2,8 +2,6 @@ package com.fatec.sig1.services;
 
 import java.util.List;
 import java.util.Optional;
-
-import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.User;
 
 public interface MantemUser {

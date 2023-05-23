@@ -5,10 +5,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
-import javax.validation.constraints.Pattern;
-
-import jakarta.persistence.OneToMany;
-
 
 public class UserDTO {
 	@NotBlank(message = "Nome é requerido")

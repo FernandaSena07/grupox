@@ -2,10 +2,6 @@ package com.fatec.sig1.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import org.joda.time.DateTime;
-//The JPA was renamed as Jakarta Persistence in 2019 and version 3.0 was released in 2020. This included the renaming of packages and properties
-//from javax. persistence to jakarta. persistence.
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

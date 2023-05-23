@@ -1,20 +1,17 @@
 package com.fatec.sig1.services;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import com.fatec.sig1.model.Ong;
-import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.MantemOngRepository;
 import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
@@ -84,11 +81,17 @@ public class MantemOngI implements MantemOng {
 		return repository.countBySegmento(segmento);
 	}
 	
-	@Override
 	public int todasAsONGCadastradasNoMes() {
 		int mesAtual = LocalDate.now().getMonth().getValue();
-		String month = String.format("%02d", mesAtual);
-		logger.info(month);
+		int anoAtual = LocalDate.now().getYear();
+		String anoAtualFormatado = Integer.toString(anoAtual);
+		String month;
+		
+		if(mesAtual <= 9) {
+			month = anoAtualFormatado + "-" + String.format("%02d", mesAtual);			
+		}else {
+			month = anoAtualFormatado + "-" + Integer.toString(mesAtual);	
+		}
 		
 		return repository.getCadastroMes(month);
 	}

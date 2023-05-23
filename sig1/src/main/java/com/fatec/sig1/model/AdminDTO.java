@@ -2,9 +2,6 @@ package com.fatec.sig1.model;
 
 import javax.validation.constraints.NotBlank;
 
-import javax.validation.constraints.Pattern;
-
-
 public class AdminDTO {
 	
 	@NotBlank(message = "Nome é requerido")

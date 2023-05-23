@@ -18,15 +18,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestTemplate;
 
-import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
-import com.fatec.sig1.services.MantemOngI;
 import com.fatec.sig1.services.MantemUser;
-import com.fatec.sig1.model.MantemOngRepository;
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.OngDTO;
 import com.fatec.sig1.model.User;

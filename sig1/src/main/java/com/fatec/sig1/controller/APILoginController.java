@@ -17,13 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.sig1.model.Ong;
-import com.fatec.sig1.model.OngDTO;
 import com.fatec.sig1.services.MantemOng;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.UserDTO;
 import com.fatec.sig1.services.MantemUser;
 import com.fatec.sig1.services.MantemAdmin;
-import com.fatec.sig1.model.AdminDTO;
 import com.fatec.sig1.model.Admin;
 
 

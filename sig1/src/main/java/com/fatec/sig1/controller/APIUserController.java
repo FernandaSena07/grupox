@@ -19,12 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestTemplate;
-
-import com.fatec.sig1.model.MantemUserRepository;
-import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.UserDTO;
 import com.fatec.sig1.services.MantemUser;

@@ -1,11 +1,9 @@
 package com.fatec.sig1.model;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
  
 /**
@@ -32,21 +30,14 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
 
     // ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
-    //SELECT count(id)  as ONG_DA_ZONA_NORTE FROM ONG  where REGIAO = 'Zona Norte' 
-    // SELECT t1.ONG_ZONA_NORTE, t2.ONG_CENTRO from (select count(id) as ONG_ZONA_NORTE from ong where REGIAO = 'Zona Norte' ) as t1, (select count(id) as ONG_CENTRO from ong where REGIAO = 'Centro' ) as t2
-    //@Query(value = "SELECT count(*) as ONG_DA_ZONA_NORTE FROM ONG  where REGIAO = 'Zona Norte'", nativeQuery = true)
     Long countByRegiao(String regiao);
 
     long count();
 
     Long countBySegmento(String segmento);
     
-    int mesAtual = LocalDate.now().getMonth().getValue();
-    String month = "" + String.format("%02d", mesAtual).toString() + "";
-
-    String teste = "SELECT count(*) FROM ONG where data_cadastro like '2023-0" + 5 + "-%';";
-	@Query(value = teste, nativeQuery = true)
-	public int getCadastroMes(@Param("month")String month);
+	@Query(value = "SELECT count(*) FROM ONG where data_cadastro like ?1%", nativeQuery = true)
+	public int getCadastroMes(String month);
     
     // ----------------------------------------------------- PARA Favoritos  -----------------------------------------------------
     
