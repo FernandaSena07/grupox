@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
  
 /**
@@ -38,6 +39,10 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
     long count();
 
     Long countBySegmento(String segmento);
+    
+    String teste = "SELECT count(*) FROM ONG where data_cadastro like '2023-05-%';";
+	@Query(value = teste, nativeQuery = true)
+	public int getCadastroMes(@Param("month")String month);
     
     // ----------------------------------------------------- PARA Favoritos  -----------------------------------------------------
     

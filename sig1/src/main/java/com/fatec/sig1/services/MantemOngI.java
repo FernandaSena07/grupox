@@ -1,5 +1,6 @@
 package com.fatec.sig1.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -82,6 +83,16 @@ public class MantemOngI implements MantemOng {
 		logger.info(">>>>>> Pesquisando todas as ongs por segmento");
 		return repository.countBySegmento(segmento);
 	}
+	
+	@Override
+	public int todasAsONGCadastradasNoMes() {
+		int mesAtual = LocalDate.now().getMonth().getValue();
+		String month = String.format("%02d", mesAtual);
+		logger.info(month);
+		
+		return repository.getCadastroMes(month);
+	}
+	
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	@Override
@@ -149,7 +160,7 @@ public class MantemOngI implements MantemOng {
 
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(),
 				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae(), 
-				ong.getContaCorrente(),ong.getAgencia(),ong.getBanco() , ong.getPix(), ong.getCpf(), ong.getRegiao());
+				ong.getContaCorrente(),ong.getAgencia(),ong.getBanco() , ong.getPix(), ong.getCpf(), ong.getRegiao(), ong.getDataCadastro());
 
 		Ong ongGetId = this.repository.findById(id).get();
 
@@ -228,6 +239,12 @@ public class MantemOngI implements MantemOng {
 			ongModificado.setRegiao(ongGetId.getRegiao());
 		}
 		
+		LocalDate dataAtual = LocalDate.now();
+
+		if (ongModificado.getDataCadastro().isEqual(dataAtual)) {
+			ongModificado.setDataCadastro(ongGetId.getDataCadastro());
+		}
+		
 		return Optional.ofNullable(repository.save(ongModificado));
 
 	}
@@ -296,5 +313,7 @@ public class MantemOngI implements MantemOng {
 
 		return repository.findBySenha(senha);
 	}
+
+
 
 }

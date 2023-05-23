@@ -1,5 +1,7 @@
 package com.fatec.sig1.model;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -63,7 +65,9 @@ public class Ong {
 	private String banco;
 	private String pix;
 	private String Cpf;
-	private String dataCadastro;
+	
+	
+	private LocalDate dataCadastro;
 	
 	
 	
@@ -86,12 +90,12 @@ public class Ong {
 		this.pix = pix;
 		this.Cpf = Cpf;
 		this.regiao = regiao;
-		setDataCadastro(new DateTime());
+		setDataCadastro(LocalDate.now());
 	}
 
 	public Ong(String nome, long telefone, String cep, String complemento,
 			   String descricao, String segmento, String email, String senha, String cnpj,
-			   String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao, String dataCadastro) {
+			   String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao, LocalDate dataCadastro) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -266,17 +270,12 @@ public class Ong {
 		this.banco = banco;
 	}
 
-	public String getDataCadastro() {
+	public LocalDate getDataCadastro() {
 		return dataCadastro;
 	}
-
-	public void setDataCadastro(DateTime dataAtual) {
-		this.dataCadastro = obtemDataAtual(dataAtual);
-	}
-
-	public String obtemDataAtual(DateTime dataAtual) {
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
-		return dataAtual.toString(fmt);
+	
+	public void setDataCadastro(LocalDate dataAtual) {
+		this.dataCadastro = dataAtual;
 	}
 	
 }

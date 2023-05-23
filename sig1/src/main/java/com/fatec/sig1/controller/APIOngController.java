@@ -158,6 +158,12 @@ public class APIOngController {
 	public ResponseEntity<Long> relatorioTotalPorSegmento(@PathVariable String seg) {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorSegmento(seg));
 	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/cadastramentoOng")
+	public ResponseEntity<Integer> relatorioTodasAsOngCadastradasNoMes() {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGCadastradasNoMes());
+	}
 
 	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
 	

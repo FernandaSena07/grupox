@@ -1,5 +1,6 @@
 package com.fatec.sig1.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,10 +117,9 @@ public class MantemUserI implements MantemUser {
 			userModificado.setSenha(userGetId.getSenha());
 		}
 		
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
-		String dataAtual = new DateTime().toString(fmt);
+		LocalDate dataAtual = LocalDate.now();
 
-		if (userModificado.getDataCadastro().equalsIgnoreCase(dataAtual)) {
+		if (userModificado.getDataCadastro().isEqual(dataAtual)) {
 			userModificado.setDataCadastro(userGetId.getDataCadastro());
 		}
 		

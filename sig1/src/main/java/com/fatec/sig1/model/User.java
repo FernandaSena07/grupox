@@ -1,5 +1,6 @@
 package com.fatec.sig1.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class User {
 	@NotBlank(message = "A senha é obrigatório")
 	private String senha;
 
-	private String dataCadastro;
+	private LocalDate dataCadastro;
 	
 	private List<Long> favoritos = new ArrayList<>();
 	
@@ -48,10 +49,10 @@ public class User {
 		this.email = email;
 		this.senha = senha;
 		this.setFavoritos(favoritos);
-		setDataCadastro(new DateTime());
+		setDataCadastro(LocalDate.now());
 	}
 
-	public User(String nome, String sobrenome, String email, String senha, String dataCadastro, List<Long> favoritos) {
+	public User(String nome, String sobrenome, String email, String senha, LocalDate dataCadastro, List<Long> favoritos) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
@@ -109,17 +110,14 @@ public class User {
 		this.senha = senha;
 	}
 
-	public String getDataCadastro() {
+	public LocalDate getDataCadastro() {
 		return dataCadastro;
 	}
 	
-	public void setDataCadastro(DateTime dataAtual) {
-		this.dataCadastro = obtemDataAtual(dataAtual);
+	public void setDataCadastro(LocalDate dataAtual) {
+		this.dataCadastro = dataAtual;
 	}
 	
-	public void setDataCadastro(String dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
 
 	public List<Long> getFavoritos() {
 		return favoritos;
@@ -129,8 +127,4 @@ public class User {
 		this.favoritos = favoritos;
 	}
 	
-	public String obtemDataAtual(DateTime dataAtual) {
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
-		return dataAtual.toString(fmt);
-	}
 }
