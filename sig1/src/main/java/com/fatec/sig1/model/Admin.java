@@ -33,20 +33,21 @@ public class Admin {
 
 		@NotBlank(message = "A senha é obrigatório")
 		private String senha;
-		
-		
+		private String role;
 		
 		public Admin(String nome, String sobrenome, String email, String senha) {
 			this.nome = nome;
 			this.sobrenome = sobrenome;
 			this.email = email;
 			this.senha = senha;
+			setRole("ADMIN");
 		}
 
 		public Admin(String nome, String email, String senha) {
 			this.nome = nome;
 			this.email = email;
 			this.senha = senha;
+			setRole("ADMIN");
 		}
 		
 		public Admin() {
@@ -90,6 +91,14 @@ public class Admin {
 
 		public void setSenha(String senha) {
 			this.senha = senha;
+		}
+
+		public String getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			this.role = role;
 		}
 
 	}

@@ -42,6 +42,9 @@ public class User {
 	
 	private List<Long> favoritos = new ArrayList<>();
 	
+	private String role;
+	
+	
 	
 	public User(String nome, String sobrenome, String email, String senha, List<Long> favoritos) {
 		this.nome = nome;
@@ -50,6 +53,7 @@ public class User {
 		this.senha = senha;
 		this.setFavoritos(favoritos);
 		setDataCadastro(LocalDate.now());
+		setRole("USUARIO");
 	}
 
 	public User(String nome, String sobrenome, String email, String senha, LocalDate dataCadastro, List<Long> favoritos) {
@@ -59,12 +63,14 @@ public class User {
 		this.senha = senha;
 		this.dataCadastro = dataCadastro;
 		this.setFavoritos(favoritos);
+		setRole("USUARIO");
 	}
 
 	public User(String nome, String email, String senha) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		setRole("USUARIO");
 	}
 	
 	public User() {
@@ -125,6 +131,14 @@ public class User {
 
 	public void setFavoritos(List<Long> favoritos) {
 		this.favoritos = favoritos;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }

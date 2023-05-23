@@ -1,5 +1,6 @@
 package com.fatec.sig1.model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,7 +41,10 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
 
     Long countBySegmento(String segmento);
     
-    String teste = "SELECT count(*) FROM ONG where data_cadastro like '2023-05-%';";
+    int mesAtual = LocalDate.now().getMonth().getValue();
+    String month = "" + String.format("%02d", mesAtual).toString() + "";
+
+    String teste = "SELECT count(*) FROM ONG where data_cadastro like '2023-0" + 5 + "-%';";
 	@Query(value = teste, nativeQuery = true)
 	public int getCadastroMes(@Param("month")String month);
     

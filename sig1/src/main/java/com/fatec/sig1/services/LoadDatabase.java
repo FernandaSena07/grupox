@@ -460,7 +460,7 @@ public class LoadDatabase {
 						"04776100",
 						"Casa", 
 						"Trabalhar pela melhoria da relação entre o ser humano, sociedade e a natureza e a promoção da cultura da paz.", 
-						"Meio ambiente", 
+						"Meio Ambiente", 
 						"contato@contato.com.br", "FazUmaBoaAcaoRapa123455", 
 						"91.111.124/1102-00", 
 						"9430-8|00", 

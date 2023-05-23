@@ -65,10 +65,8 @@ public class Ong {
 	private String banco;
 	private String pix;
 	private String Cpf;
-	
-	
 	private LocalDate dataCadastro;
-	
+	private String role;
 	
 	
 	public Ong(String nome, long telefone, String cep, String complemento, 
@@ -91,6 +89,7 @@ public class Ong {
 		this.Cpf = Cpf;
 		this.regiao = regiao;
 		setDataCadastro(LocalDate.now());
+		setRole("ONG");
 	}
 
 	public Ong(String nome, long telefone, String cep, String complemento,
@@ -113,6 +112,7 @@ public class Ong {
 		this.Cpf = Cpf;
 		this.regiao = regiao;
 		this.dataCadastro = dataCadastro;
+		setRole("ONG");
 	}
 
 	public Ong(String nome, String email, String senha, String cnpj, String cnae) {
@@ -121,6 +121,7 @@ public class Ong {
 		this.email = email;
 		this.senha = senha;
 		this.cnae = cnae;
+		setRole("ONG");
 	}
 	
 	public Ong() {
@@ -276,6 +277,14 @@ public class Ong {
 	
 	public void setDataCadastro(LocalDate dataAtual) {
 		this.dataCadastro = dataAtual;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }
