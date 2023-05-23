@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.OngDTO;
+import com.fatec.sig1.services.MantemOng;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.UserDTO;
-import com.fatec.sig1.services.MantemOng;
 import com.fatec.sig1.services.MantemUser;
+import com.fatec.sig1.services.MantemAdmin;
+import com.fatec.sig1.model.AdminDTO;
+import com.fatec.sig1.model.Admin;
+
 
 @RestController
 @RequestMapping("/api/v1/login")
@@ -34,6 +38,10 @@ public class APILoginController {
 	@Autowired
 	MantemUser mantemUser;
 	User user;
+	
+	@Autowired
+	MantemAdmin mantemAdmin;
+	Admin admin;
 	
 	Logger logger = LogManager.getLogger(this.getClass());
 	
@@ -59,12 +67,13 @@ public class APILoginController {
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(userEmail.get());
 		}
+		
 
 		Optional<Ong> ongEmail = mantemOng.findByEmail(userDTO.getEmail());
 		Optional<Ong> ongSenha = mantemOng.findBySenha(userDTO.getSenha());
 
 		if (ongEmail.isEmpty() || ongSenha.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
+			logger.info("!!Nada encontrado no banco de dados do tipo administrador!!");
 		}else {
 			try {
 				logger.info(">>>>>> Encontrou Email no banco: " + ongEmail.get().getEmail());
@@ -72,9 +81,22 @@ public class APILoginController {
 			} catch (Exception e) {
 				logger.info(e);
 			}
-			
 			return ResponseEntity.status(HttpStatus.OK).body(ongEmail.get());
 		}
 		
+		Optional<Admin> adminEmail = mantemAdmin.findByEmail(userDTO.getEmail());
+		Optional<Admin> adminSenha = mantemAdmin.findBySenha(userDTO.getSenha());
+		
+		if (adminEmail.isEmpty() || adminSenha.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
+		}else {
+			try {
+				logger.info(">>>>>> Encontrou Email no banco: " + adminEmail.get().getEmail());
+				logger.info(">>>>>> Encontrou Senha no banco: " + adminSenha.get().getSenha());
+			} catch (Exception e) {
+				logger.info(e);
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(adminEmail.get());		
+		}
 	}
 }
