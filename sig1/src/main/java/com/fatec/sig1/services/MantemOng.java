@@ -22,6 +22,8 @@ public interface MantemOng {
 	Long todasAsONGPorSegmento(String segmento);
 	
 	int todasAsONGCadastradasNoMes();
+	
+	int todasAsONGCadastradasNoMesPassado();
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	Optional<Ong> consultaPorCnpj(String cnpj);

@@ -158,6 +158,12 @@ public class APIOngController {
 	public ResponseEntity<Integer> relatorioTodasAsOngCadastradasNoMes() {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGCadastradasNoMes());
 	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/cadastramentoOngMesPassado")
+	public ResponseEntity<Integer> relatorioTodasAsOngCadastradasNoMesPassado() {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGCadastradasNoMesPassado());
+	}
 
 	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
 	

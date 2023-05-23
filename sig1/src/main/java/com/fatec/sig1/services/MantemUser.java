@@ -26,7 +26,9 @@ public interface MantemUser {
 
 	Long todosOsUsuarioCadastrados();
 	
-
+	int todasAsONGCadastradasNoMes();
+	
+	int todasAsONGCadastradasNoMesPassado();
 
 
 }

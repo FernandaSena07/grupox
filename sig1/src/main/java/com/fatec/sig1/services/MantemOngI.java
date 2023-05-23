@@ -96,6 +96,21 @@ public class MantemOngI implements MantemOng {
 		return repository.getCadastroMes(month);
 	}
 	
+	public int todasAsONGCadastradasNoMesPassado() {
+		int mesAtual = LocalDate.now().getMonth().getValue() -1 ;
+		int anoAtual = LocalDate.now().getYear();
+		String anoAtualFormatado = Integer.toString(anoAtual);
+		String month;
+		
+		if(mesAtual <= 9) {
+			month = anoAtualFormatado + "-" + String.format("%02d", mesAtual);			
+		}else {
+			month = anoAtualFormatado + "-" + Integer.toString(mesAtual);	
+		}
+		
+		return repository.getCadastroMes(month);
+	}
+	
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 
 	@Override

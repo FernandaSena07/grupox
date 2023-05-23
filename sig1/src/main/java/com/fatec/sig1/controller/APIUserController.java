@@ -109,4 +109,16 @@ public class APIUserController {
 	public ResponseEntity<Long> relatorioTodosOsUsuarios() {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemUser.todosOsUsuarioCadastrados());
 	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/cadastramentoOng")
+	public ResponseEntity<Integer> relatorioTodasAsOngCadastradasNoMes() {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemUser.todasAsONGCadastradasNoMes());
+	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/cadastramentoOngMesPassado")
+	public ResponseEntity<Integer> relatorioTodasAsOngCadastradasNoMesPassado() {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemUser.todasAsONGCadastradasNoMesPassado());
+	}
 }

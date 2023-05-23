@@ -71,7 +71,7 @@ public class APILoginController {
 		Optional<Ong> ongSenha = mantemOng.findBySenha(userDTO.getSenha());
 
 		if (ongEmail.isEmpty() || ongSenha.isEmpty()) {
-			logger.info("!!Nada encontrado no banco de dados do tipo administrador!!");
+			logger.info("!!Nada encontrado no banco de dados do tipo ong!!");
 		}else {
 			try {
 				logger.info(">>>>>> Encontrou Email no banco: " + ongEmail.get().getEmail());

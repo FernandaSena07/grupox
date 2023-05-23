@@ -486,7 +486,7 @@ public class LoadDatabase {
 		return args -> {
 		repository.deleteAll();
 		
-		List<Long> user1Favoritos = new ArrayList<>();
+		List<Long> user1Favoritos = new ArrayList<>(Arrays.asList((long) 1));
 		User user1 = new User("Diogo", "Lima","DiogoLima50@gmail.com", "12345", LocalDate.parse("2023-05-20"),user1Favoritos) ;
 		log.info("Preloading " + repository.save(user1));
 		
