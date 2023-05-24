@@ -33,7 +33,7 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
     Long countByRegiao(String regiao);
 
     long count();
-
+ 
     Long countBySegmento(String segmento);
     
 	@Query(value = "SELECT count(*) FROM ONG where data_cadastro like ?1%", nativeQuery = true)
