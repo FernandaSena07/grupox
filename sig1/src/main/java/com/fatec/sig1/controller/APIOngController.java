@@ -171,8 +171,8 @@ public class APIOngController {
 	MantemUser mantemUser;
 	
 	@CrossOrigin // desabilita o cors do spring security
-	@PostMapping("/favoritos/{id}")
-	public ResponseEntity<Object> buscarFavoritos(@PathVariable(value = "id") Long id, @RequestBody @Valid UserDTO userDTO, BindingResult result) {
+	@GetMapping("/favoritos/{id}")
+	public ResponseEntity<Object> buscarFavoritos(@PathVariable(value = "id") Long id, @Valid UserDTO userDTO, BindingResult result) {
 		
 		Optional<User> user = mantemUser.consultaPorId(id);
 		if (user.isEmpty()) {
