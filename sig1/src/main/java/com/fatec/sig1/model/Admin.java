@@ -1,7 +1,6 @@
 package com.fatec.sig1.model;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +22,6 @@ public class Admin {
 		@NotBlank(message = "Sobrenome é requerido")
 		private String sobrenome;
 			
-		@Pattern(regexp = "/^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$/i", message = "O e-mail deve ser escrito no formato nome@gmail.com")
 		@NotBlank(message = "O Email é obrigatório")
 		private String email;
 

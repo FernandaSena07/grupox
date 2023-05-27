@@ -37,11 +37,11 @@ public class OngDTO {
 	private String agencia;
 	private String banco;
 	private String pix;
-	private String Cpf;
+	private String cpf;
 
 	public OngDTO(String nome, long telefone, String cep, String complemento, 
 			String descricao, String segmento, String email, String senha, String cnpj, 
-			String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao) {
+			String cnae, String contaCorrente, String agencia, String banco, String pix, String cpf, String regiao) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
@@ -56,7 +56,7 @@ public class OngDTO {
 		this.agencia = agencia;
 		this.banco = banco;
 		this.pix = pix;
-		this.Cpf = Cpf;
+		this.cpf = cpf;
 		this.regiao = regiao;
 	}
 	
@@ -168,11 +168,11 @@ public class OngDTO {
 	}
 
 	public String getCpf() {
-		return Cpf;
+		return cpf;
 	}
 
 	public void setCpf(String cpf) {
-		this.Cpf = cpf;
+		this.cpf = cpf;
 	}
 	
 	public String getRegiao() {
@@ -192,6 +192,6 @@ public class OngDTO {
 	}
 
 	public Ong retornaUmCliente() {
-		return new Ong(nome, telefone, cep, complemento, descricao, segmento, email, senha, cnpj, cnae, contaCorrente, agencia, banco, pix, Cpf, regiao);
+		return new Ong(nome, telefone, cep, complemento, descricao, segmento, email, senha, cnpj, cnae, contaCorrente, agencia, banco, pix, cpf, regiao);
 	}
 }

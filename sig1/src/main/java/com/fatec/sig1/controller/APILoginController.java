@@ -48,8 +48,8 @@ public class APILoginController {
 	@PostMapping
 	public ResponseEntity<Object> login(@RequestBody @Valid UserDTO userDTO, BindingResult result) {
 		
-		logger.info(">>>>>> email da requisicao:" + userDTO.getEmail());
-		logger.info(">>>>>> senha da requisicao:" + userDTO.getSenha());
+		logger.info(">>>>>> email da requisicao:  %s" , userDTO.getEmail());
+		logger.info(">>>>>> senha da requisicao:  %s" , userDTO.getSenha());
 
 		Optional<User> userEmail = mantemUser.findByEmail(userDTO.getEmail());
 		Optional<User> userSenha = mantemUser.findBySenha(userDTO.getSenha());
@@ -58,10 +58,10 @@ public class APILoginController {
 			logger.info("!!Nada encontrado no banco de dados do tipo usuário!!");
 		}else {
 			try {
-				logger.info(">>>>>> Encontrou Email no banco: " + userEmail.get().getEmail());
-				logger.info(">>>>>> Encontrou Senha no banco: " + userSenha.get().getSenha());
+				logger.info(">>>>>> Encontrou Email no banco do usuario:  %s" , userEmail.get().getEmail());
+				logger.info(">>>>>> Encontrou Senha no banco do usuario:  %s" , userSenha.get().getSenha());
 			} catch (Exception e) {
-				logger.info(">>>> ERRO: " + e);
+				logger.info(">>>> ERRO:  %s" , e);
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(userEmail.get());
 		}
@@ -74,8 +74,8 @@ public class APILoginController {
 			logger.info("!!Nada encontrado no banco de dados do tipo ong!!");
 		}else {
 			try {
-				logger.info(">>>>>> Encontrou Email no banco: " + ongEmail.get().getEmail());
-				logger.info(">>>>>> Encontrou Senha no banco: " + ongSenha.get().getSenha());
+				logger.info(">>>>>> Encontrou Email no banco da ong:  %s" , ongEmail.get().getEmail());
+				logger.info(">>>>>> Encontrou Senha no banco da ong:  %s" , ongSenha.get().getSenha());
 			} catch (Exception e) {
 				logger.info(e);
 			}
@@ -89,8 +89,8 @@ public class APILoginController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email ou senha inválidos");
 		}else {
 			try {
-				logger.info(">>>>>> Encontrou Email no banco: " + adminEmail.get().getEmail());
-				logger.info(">>>>>> Encontrou Senha no banco: " + adminSenha.get().getSenha());
+				logger.info(">>>>>> Encontrou Email no banco do admin:  %s" , adminEmail.get().getEmail());
+				logger.info(">>>>>> Encontrou Senha no banco do admin:  %s" , adminSenha.get().getSenha());
 			} catch (Exception e) {
 				logger.info(e);
 			}

@@ -14,17 +14,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.MantemUserRepository;
 
 @Configuration 
 public class LoadDatabase {
-	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+	Logger logger = LogManager.getLogger(this.getClass());
+	private static final String TEXTO_LOGGER = "Preloading  %s";
+	private static final String CATEGORIA_ONG_CID = "Cidadania";
+	private static final String CNAE = "9430-8|00";
+	private static final String ZONA_LESTE = "Zona Leste";
+	private static final String ZONA_OESTE = "Zona Oeste";
+	private static final String ZONA_NORTE = "Zona Norte";
+	private static final String ZONA_SUL = "Zona Sul";
+	private static final String CENTRO = "Centro";
+	private static final String BANCO_ITAU = "Banco Itaú";
 	
 	@Autowired
-	MantemOngRepository OngRepository;
+	MantemOngRepository ongRepository;
 	
 	@Bean
 	CommandLineRunner initDatabase(MantemOngRepository repository, MantemOng repoCliente) {
@@ -47,11 +56,11 @@ public class LoadDatabase {
 						"Bradesco",
 						"emailpixadote@gmail.com", 
 						"302.206.482-71",
-						"Zona Norte",
+						ZONA_NORTE,
 						LocalDate.parse("2023-02-20")
 				);
 		ong1.setEndereco("Aguia de Haia");
-		log.info("Preloading " + repository.save(ong1));
+		logger.info(TEXTO_LOGGER, repository.save(ong1));
 		
 		Ong ong2 = new Ong
 				(
@@ -60,20 +69,20 @@ public class LoadDatabase {
 						"08011030",
 						"Casa", 
 						"O Projeto Esperança de São Miguel Paulista - PROJESP - foi criado a partir de uma grande necessidade de atuação social na década de 80 para a assistência às pessoas vítimas de uma forte epidemia de AIDS. Pela falta de informações, recursos financeiros e os devidos direcionamentos, a população acometida pela doença nessa região era uma das mais fragilizadas.", 
-						"Cidadania", 
+						CATEGORIA_ONG_CID, 
 						"projesp@projesp.org.br", "Oi9*121A", 
 						"12.121.323/0002-61", 
-						"9430-8|00", 
+						CNAE, 
 						"12212", 
 						"0154", 
 						"Bradesco",
 						"esperanzaProjeto@gmail.com", 
 						"102.206.482-71",
-						"Zona Leste",
+						ZONA_LESTE,
 						LocalDate.parse("2023-02-25")
 				);
 		ong2.setEndereco("Guilherme de Aguiar");
-		log.info("Preloading " + repository.save(ong2));
+		logger.info(TEXTO_LOGGER , repository.save(ong2));
 		
 		Ong ong3 = new Ong
 				(
@@ -85,17 +94,17 @@ public class LoadDatabase {
 						"Gênero e diversidade", 
 						"falaMulher@hotmail.com", "Oi29*121B", 
 						"11.111.333/0002-61", 
-						"9430-8|00", 
+						CNAE, 
 						"12200", 
 						"0004", 
 						"Nubank",
 						"67084387776011847635893856138508", 
 						"200.006.182-71",
-						"Zona Oeste",
+						ZONA_OESTE,
 						LocalDate.parse("2023-02-10")
 				);
 		ong3.setEndereco("Mourato Coelho");
-		log.info("Preloading " + repository.save(ong3));
+		logger.info(TEXTO_LOGGER, repository.save(ong3));
 		
 		Ong ong4 = new Ong
 				(
@@ -107,17 +116,17 @@ public class LoadDatabase {
 						"Educação", 
 						"GraoDaVida2000@gmail.com", "VidaGrao", 
 						"44.111.343/1102-00", 
-						"9430-8|00", 
+						CNAE, 
 						"99200", 
 						"1001", 
-						"Banco Itaú",
+						BANCO_ITAU,
 						"GraoDaVida2000@gmail.com", 
 						"221.346.182-71",
-						"Zona Sul",
+						ZONA_SUL,
 						LocalDate.parse("2023-04-01")
 				);
 		ong4.setEndereco("Olímpio Carr Ribeiro");
-		log.info("Preloading " + repository.save(ong4));
+		logger.info(TEXTO_LOGGER , repository.save(ong4));
 		
 		
 		Ong ong5 = new Ong
@@ -130,17 +139,17 @@ public class LoadDatabase {
 						"Cultura e esporte", 
 						"contato@nosdobem.org", "FazOBemRapa200*", 
 						"99.999.124/1102-00", 
-						"9430-8|00", 
+						CNAE, 
 						"91311", 
 						"1002", 
 						"Banco do Brasil",
 						"contato@nosdobem.org", 
 						"222.121.182-71",
-						"Centro",
+						CENTRO,
 						LocalDate.parse("2023-03-20")
 				);
 		ong5.setEndereco("Rua São Bento, 329");
-		log.info("Preloading " + repository.save(ong5));
+		logger.info(TEXTO_LOGGER , repository.save(ong5));
 		
 		Ong ong6 = new Ong
 				(
@@ -148,21 +157,25 @@ public class LoadDatabase {
 						1199325819, 
 						"04757000",
 						"Casa", 
-						"A Kor Ambiental foi fundada com objetivo de fornecer serviços de excelência em soluções de engenharia ambiental, focadas nas áreas de Gerenciamento de Áreas Contaminadas, Gerenciamento de Áreas Verdes e Licenciamento Ambiental. ​ Composta por uma equipe multidisciplinar de profissionais qualificados, graduados em instituições renomadas e com mais de 10 anos de experiência, a Kor Ambiental está pronta para oferecer soluções econômicas e sustentáveis de acordo com a necessidade do cliente, público ou privado, dos mais diversos setores.", 
+						"A Kor Ambiental foi fundada com objetivo de fornecer serviços de excelência em soluções de engenharia ambiental, focadas nas áreas "
+						+ "de gerenciamento de áreas Contaminadas, "
+						+ "Gerenciamento de áreas Verdes e Licenciamento Ambiental. "
+						+ "Composta por uma equipe multidisciplinar"
+						+ " de profissionais qualificados, graduados em instituições renomadas e com mais de 10 anos de experiência, a Kor Ambiental está pronta para oferecer soluções econômicas e sustentáveis de acordo com a necessidade do cliente, público ou privado, dos mais diversos setores.", 
 						"Meio Ambiente", 
 						"contato@korambiental.com.br", "Kor123455", 
 						"11.399.124/1102-00", 
-						"9430-8|00", 
+						CNAE, 
 						"89450", 
 						"1001", 
-						"Caixa",
+						"Banco Pan",
 						"contato@korambiental.com.br", 
 						"111.121.182-71",
-						"Zona Sul",
+						ZONA_SUL,
 						LocalDate.parse("2023-04-18")
 				);
 		ong6.setEndereco("Bento Branco de Andrade Filho");
-		log.info("Preloading " + repository.save(ong6));
+		logger.info(TEXTO_LOGGER , repository.save(ong6));
 		
 		Ong ong7 = new Ong
 				(
@@ -172,19 +185,19 @@ public class LoadDatabase {
 						"Casa", 
 						"O projeto do Instituto Cuida de Mim surgiu em 2007 a partir de reflexões e questionamentos de um grupo multidisciplinar de profissionais com experiência e prática clínica, obtidos no Instituto Sedes Sapientiae, bem como através de atividades em consultórios particulares e outras instituições.", 
 						"Saúde", 
-						"contato@cuidademim.com.br", "FazUmaBoaAcaoRapa123455", 
-						"90.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						"contato@cuidademim.com.br", "FazUmaBoaAcaoRapa4343Af", 
+						"92.111.124/1102-00", 
+						CNAE, 
+						"112122", 
 						"9901", 
-						"Santander",
+						"Banco inter",
 						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"881.001.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-01-29")
 				);
 		ong7.setEndereco("Praça Dom Duarte Leopoldo, 137");
-		log.info("Preloading " + repository.save(ong7));
+		logger.info(TEXTO_LOGGER , repository.save(ong7));
 		
 		Ong ong8 = new Ong
 				(
@@ -193,20 +206,20 @@ public class LoadDatabase {
 						"03959030",
 						"Casa", 
 						"Fundada em 09 de Setembro de 1964, nasceu da preocupação de um grupo da Comunidade de São Mateus com a população do bairro, que crescia gradativamente e desprovida de recursos mínimos necessários como: água, luz, saneamento básico, transporte e alimentação.", 
-						"Cidadania", 
-						"sede@obrasocialsaomateus.org", "FazUmaBoaAcaoRapa123455", 
-						"90.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CATEGORIA_ONG_CID, 
+						"sede@obrasocialsaomateus.org", "FazUmaBoaAcaoRapa1232", 
+						"93.111.124/1102-00", 
+						CNAE, 
+						"112125", 
 						"9901", 
-						"Santander",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"Banco Central",
+						"saoMatheus@gmail.com", 
+						"961.001.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-03-29")
 				);
 		ong8.setEndereco("Rua Alessandro Giulio Dell'Aringa, 126");
-		log.info("Preloading " + repository.save(ong8));
+		logger.info(TEXTO_LOGGER, repository.save(ong8));
 		
 		Ong ong9 = new Ong
 				(
@@ -216,19 +229,19 @@ public class LoadDatabase {
 						"Casa", 
 						"Somos uma equipe formada por mulheres com histórias diferentes. Entre nós, temos psicóloga, assistente social, mulheres que estão enfrentando a batalha pela vida, outras que passaram e venceram o câncer de mama e outras simpatizantes da causa. Acreditamos que nossos caminhos não se cruzaram por acaso, por isso, decidimos nos unir para dar apoio, carinho e atenção à MULHER que enfrenta a luta contra o câncer.", 
 						"Gênero e diversidade", 
-						"apoio@associacaorosamulher.org", "FazUmaBoaAcaoRapa123455", 
-						"90.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						"apoio@associacaorosamulher.org", "FazUmaBoaAcaoRapa99956", 
+						"94.111.124/1102-00", 
+						CNAE, 
+						"112129", 
 						"9901", 
 						"Santander",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"contatoPix@rosaMulher.com.br", 
+						"999.051.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-03-21")
 				);
 		ong9.setEndereco("R. Dr. José Cioffi, 475");
-		log.info("Preloading " + repository.save(ong9));
+		logger.info(TEXTO_LOGGER , repository.save(ong9));
 		
 		Ong ong10 = new Ong
 				(
@@ -237,20 +250,20 @@ public class LoadDatabase {
 						"04232000",
 						"Casa", 
 						"A Ong Associação de Apoio Humanitário, AAH, é uma organização criada com o intuito de arrecadar fundos e doações para famílias que estão passando por necessidades e também para moradores de rua.", 
-						"Cidadania", 
-						"contato@ongaah.com.br", "FazUmaBoaAcaoRapa123455", 
-						"90.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CATEGORIA_ONG_CID, 
+						"contato@ongaah.com.br", "FazUmaBoaAcaoRapa1243", 
+						"95.111.124/1102-00", 
+						CNAE, 
+						"112199", 
 						"9901", 
 						"Santander",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
-						LocalDate.parse("2023-05-20")
+						"contatoPix@apoioHumanitario.com.br", 
+						"931.015.182-71",
+						ZONA_LESTE,
+						LocalDate.parse("2023-05-05")
 				);
 		ong10.setEndereco("Estr. das Lágrimas, 1712");
-		log.info("Preloading " + repository.save(ong10));
+		logger.info(TEXTO_LOGGER, repository.save(ong10));
 		
 		Ong ong11 = new Ong
 				(
@@ -259,20 +272,20 @@ public class LoadDatabase {
 						"01235010",
 						"Casa", 
 						"Somos o resultado da visão pioneira de nossa fundadora, a economista Luciana Chinaglia Quintão, e a soma de esforços de cidadãos, empresas e indústrias alimentícias dedicadas a reduzir o desperdício de alimentos e a combater a fome.", 
-						"Cidadania", 
-						"vanessa.godoy@printeccomunicacao.com.br", "FazUmaBoaAcaoRapa123455", 
-						"90.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CATEGORIA_ONG_CID, 
+						"vanessa.godoy@printeccomunicacao.com.br", "FazUmaBoaAcaoRapa9994", 
+						"96.111.124/1102-00", 
+						CNAE, 
+						"110023", 
 						"9901", 
-						"Caixa",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Oeste",
+						"Banco Original",
+						"contatoPix@alimentos.com.br", 
+						"091.000.182-71",
+						ZONA_OESTE,
 						LocalDate.parse("2023-05-20")
 				);
 		ong11.setEndereco("Rua Atibaia, 218");
-		log.info("Preloading " + repository.save(ong11));
+		logger.info(TEXTO_LOGGER, repository.save(ong11));
 		
 		Ong ong12 = new Ong
 				(
@@ -281,20 +294,20 @@ public class LoadDatabase {
 						"04563013",
 						"Casa", 
 						"Somos uma causa.Somos um sentimento.Somos PESSOAS!", 
-						"Cidadania", 
-						"contato@agenteajuda.org.br", "FazUmaBoaAcaoRapa123455", 
-						"90.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CATEGORIA_ONG_CID, 
+						"contato@agenteajuda.org.br", "FazUmaBoaAcaoRapa121536", 
+						"97.111.124/1102-00", 
+						CNAE, 
+						"000067", 
 						"9901", 
-						"Banco Itaú",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Sul",
+						BANCO_ITAU,
+						"agenteAjuda@hotmail.com", 
+						"091.001.182-40",
+						ZONA_SUL,
 						LocalDate.parse("2023-03-02")
 				);
 		ong12.setEndereco("Av. Padre Antônio José dos Santos, 1140");
-		log.info("Preloading " + repository.save(ong12));
+		logger.info(TEXTO_LOGGER, repository.save(ong12));
 		
 		Ong ong13 = new Ong
 				(
@@ -303,20 +316,20 @@ public class LoadDatabase {
 						"04583911",
 						"Casa", 
 						"É uma das 39 afiliadas da Make-A-Wish® International, uma das instituições de apoio à criança mais conhecidas e respeitadas no mundo.", 
-						"Cidadania", 
-						"enquiries@makeawish.org.au", "FazUmaBoaAcaoRapa123455", 
+						CATEGORIA_ONG_CID, 
+						"enquiries@makeawish.org.au", "FazUmaBoaAcaoRapaG5641", 
 						"10.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CNAE, 
+						"112090", 
 						"9901", 
-						"Banco Itaú",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Sul",
+						BANCO_ITAU,
+						"4362061520", 
+						"991.011.112-11",
+						ZONA_SUL,
 						LocalDate.parse("2023-01-30")
 				);
 		ong13.setEndereco("R. Álvaro Rodrigues, 152");
-		log.info("Preloading " + repository.save(ong13));
+		logger.info(TEXTO_LOGGER, repository.save(ong13));
 		
 		Ong ong14 = new Ong
 				(
@@ -325,20 +338,20 @@ public class LoadDatabase {
 						"05660000",
 						"Casa", 
 						"Somos uma Associação sem fins lucrativos localizada na comunidade de Paraisópolis, em São Paulo, com cinco projetos principais: uma escola regular de Educação Infantil e de Ensino Fundamental II, uma escola integral de Ensino Médio; Cursos Profissionalizantes e Biblioteca aberta à comunidade.", 
-						"Cidadania", 
-						"contato@contato.org", "FazUmaBoaAcaoRapa123455", 
+						CATEGORIA_ONG_CID, 
+						"contato@contato.org", "FazUmaBoaAcaoRapa11112A", 
 						"20.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CNAE, 
+						"002123", 
 						"9901", 
 						"Banco do Brasil",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Sul",
+						"36521565981", 
+						"831.001.182-71",
+						ZONA_SUL,
 						LocalDate.parse("2023-05-07")
 				);
 		ong14.setEndereco("Rua Pasquale Gallupi, 928");
-		log.info("Preloading " + repository.save(ong14));
+		logger.info(TEXTO_LOGGER, repository.save(ong14));
 		
 		Ong ong15 = new Ong
 				(
@@ -347,20 +360,20 @@ public class LoadDatabase {
 						"01214100",
 						"Casa", 
 						"APOIO – Associação de Auxílio Mútuo da Região Leste iniciou suas atividades em 1992  e foi fundada em 18/12/1993, organização civil sem fins lucrativos, reconhecida de Utilidade Pública Federal, resultou de um grupo formado por pessoas de vários segmentos sociais preocupados com a pobreza de amplas camadas populares. O contato permanente com famílias de baixa renda impulsionou a organização a participar em várias atividades de apoio às pessoas em situação de vulnerabilidade social.", 
-						"Cidadania", 
-						"apoio@apoio-sp.org.br", "FazUmaBoaAcaoRapa123455", 
+						CATEGORIA_ONG_CID, 
+						"apoio@apoio-sp.org.br", "FazUmaBoaAcaoRapa97077", 
 						"30.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CNAE, 
+						"112329", 
 						"9901", 
 						"Caixa",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"21078945871", 
+						"821.001.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-05-09")
 				);
 		ong15.setEndereco("Av. Duque de Caxias, 325");
-		log.info("Preloading " + repository.save(ong15));
+		logger.info(TEXTO_LOGGER, repository.save(ong15));
 		
 		Ong ong16 = new Ong
 				(
@@ -369,20 +382,20 @@ public class LoadDatabase {
 						"01308000",
 						"Casa", 
 						"A ONG ZOÉ é uma associação sem fins lucrativos que apoia populações amazônicas com acesso limitado aos cuidados com a saúde.", 
-						"Cidadania", 
-						"contato@ongzoe.org", "FazUmaBoaAcaoRapa123455", 
+						CATEGORIA_ONG_CID, 
+						"contato@ongzoe.org", "FazUmaBoaAcaoRapa1215464", 
 						"40.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CNAE, 
+						"112112", 
 						"9901", 
 						"Nubank",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"contatoPix@zoe.com.br", 
+						"141.999.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-05-17")
 				);
 		ong16.setEndereco("R. Barata Ribeiro, 414");
-		log.info("Preloading " + repository.save(ong16));
+		logger.info(TEXTO_LOGGER, repository.save(ong16));
 		
 		Ong ong17 = new Ong
 				(
@@ -392,19 +405,19 @@ public class LoadDatabase {
 						"Casa", 
 						"O Grupo Pela Vidda/SP (Valorização, Integração e Dignidade do Doente de aids) é uma ONG sem fins lucrativos voltada a pessoas vivendo e convivendo com HIV/AIDS independente de gênero, orientação sexual, orientação político-partidária ou religiosa.", 
 						"Saúde", 
-						"gpvsp@uol.com.br", "FazUmaBoaAcaoRapa123455", 
+						"gpvsp@uol.com.br", "FazUmaBoaAcaoRapa212143", 
 						"50.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CNAE, 
+						"100023", 
 						"9901", 
 						"Banco Pam",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"pelavidaPix@gmail.com", 
+						"991.302.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-02-01")
 				);
 		ong17.setEndereco("Rua Gen. Jardim, 566");
-		log.info("Preloading " + repository.save(ong17));
+		logger.info(TEXTO_LOGGER, repository.save(ong17));
 		
 		Ong ong18 = new Ong
 				(
@@ -413,20 +426,20 @@ public class LoadDatabase {
 						"03110010",
 						"Casa", 
 						"O Grupo da Sopa foi criado em 1996, por iniciativa de um grupo de amigos que resolveu dedicar algumas horas semanais para ajudar o próximo. Durante os dois primeiros anos, esses amigos preparavam sopa para distribuir nas ruas de São Paulo.", 
-						"Cidadania", 
-						"contato@grupodasopa.org", "FazUmaBoaAcaoRapa123455", 
+						CATEGORIA_ONG_CID, 
+						"contato@grupodasopa.org", "FazUmaBoaAcaoRapa4343564", 
 						"60.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
+						CNAE, 
+						"182523", 
 						"9901", 
 						"Banco Original",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"grupodaSopa@hotmail.com", 
+						"181.001.182-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-03-18")
 				);
 		ong18.setEndereco("R. Borges de Figueiredo, 86");
-		log.info("Preloading " + repository.save(ong18));
+		logger.info(TEXTO_LOGGER, repository.save(ong18));
 		
 		Ong ong19 = new Ong
 				(
@@ -435,20 +448,20 @@ public class LoadDatabase {
 						"04763060",
 						"Casa", 
 						"O desejo de ajudar crianças carentes surgiu em 2014, quando a idealizadora Simone e sua filha Bia conheceram a história de uma família que acabara de dar as boa-vindas a trigêmeas e que necessitava de enxoval não só para uma, mas para três meninas!", 
-						"Cidadania", 
-						"atendimento@desejandoobem.com.br", "FazUmaBoaAcaoRapa123455", 
+						CATEGORIA_ONG_CID, 
+						"atendimento@desejandoobem.com.br", "FazUmaBoaAcaoRapa77343", 
 						"80.111.124/1102-00", 
-						"9430-8|00", 
+						CNAE, 
 						"112123", 
-						"9901", 
+						"9902", 
 						"Banco inter",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Leste",
+						"contatoPix@desejandoBem.com.br", 
+						"011.001.162-71",
+						ZONA_LESTE,
 						LocalDate.parse("2023-05-22")
 				);
 		ong19.setEndereco("R. Amaro Leite, 88");
-		log.info("Preloading " + repository.save(ong19));
+		logger.info(TEXTO_LOGGER, repository.save(ong19));
 		
 		Ong ong20 = new Ong
 				(
@@ -458,19 +471,19 @@ public class LoadDatabase {
 						"Casa", 
 						"Trabalhar pela melhoria da relação entre o ser humano, sociedade e a natureza e a promoção da cultura da paz.", 
 						"Meio Ambiente", 
-						"contato@contato.com.br", "FazUmaBoaAcaoRapa123455", 
+						"contato@contato.com.br", "FazUmaBoaAcaoRapa998", 
 						"91.111.124/1102-00", 
-						"9430-8|00", 
-						"112123", 
-						"9901", 
+						CNAE, 
+						"134103", 
+						"1900", 
 						"Caixa",
-						"contatoPix@cuidademim.com.br", 
-						"991.001.182-71",
-						"Zona Sul",
+						"brPlanetarioContato@gmail.com", 
+						"851.001.182-01",
+						ZONA_SUL,
 						LocalDate.parse("2023-01-02")
 				);
 		ong20.setEndereco("Av. Engenheiro José Salles, 333");
-		log.info("Preloading " + repository.save(ong20));
+		logger.info(TEXTO_LOGGER, repository.save(ong20));
 		
 		};
 		
@@ -479,7 +492,7 @@ public class LoadDatabase {
 	}
 	
 	@Autowired
-	MantemUserRepository UserRepository;
+	MantemUserRepository userRepository;
 		
 	@Bean
 	CommandLineRunner initDatabaseUser(MantemUserRepository repository, MantemUser repoCliente) {
@@ -488,19 +501,19 @@ public class LoadDatabase {
 		
 		List<Long> user1Favoritos = new ArrayList<>(Arrays.asList((long) 1));
 		User user1 = new User("Diogo", "Lima","DiogoLima50@gmail.com", "12345", LocalDate.parse("2023-05-20"),user1Favoritos) ;
-		log.info("Preloading " + repository.save(user1));
+		logger.info(TEXTO_LOGGER, repository.save(user1));
 		
 		List<Long> user2Favoritos = new ArrayList<>(Arrays.asList((long) 1, (long) 5));
 		
 		User user2 = new User("Bianca", "Jesus","biancaJesus299@gmail.com", "98765*A", LocalDate.parse("2023-05-21"),user2Favoritos) ;
-		log.info("Preloading " + repository.save(user2));
+		logger.info(TEXTO_LOGGER, repository.save(user2));
 				
 		};
 
 	}
 	
 	@Autowired
-	MantemAdminRepository AdminRepository;
+	MantemAdminRepository adminRepository;
 		
 	@Bean
 	CommandLineRunner initDatabaseAdmin(MantemAdminRepository repository, MantemAdmin repoCliente) {
@@ -508,7 +521,7 @@ public class LoadDatabase {
 		repository.deleteAll();
 				
 		Admin admin1 = new Admin("Fernanda", "Sena de Souza","ScrumMaster4K@gmail.com", "secretyPassword12");
-		log.info("Preloading " + repository.save(admin1));
+		logger.info(TEXTO_LOGGER, repository.save(admin1));
 				
 		};
 

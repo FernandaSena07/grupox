@@ -73,12 +73,21 @@ public class MantemAdminI implements MantemAdmin {
 
 		Admin adminModificado = new Admin(admin.getNome(), admin.getSobrenome(),admin.getEmail(), admin.getSenha());
 
-		Admin adminGetId = this.repository.findById(id).get();
-
+		Optional<Admin> adminGetIdConsulta = this.repository.findById(id);
+		
+		Admin adminGetId;
+		
+		if (!(adminGetIdConsulta.isEmpty())) {
+			adminGetId = adminGetIdConsulta.get();
+		}else {
+			return Optional.empty();
+		}
+		
+		
 		adminModificado.setId(id);
 		
 		logger.info(
-				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id => " + adminModificado.getId());
+				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id =>  %s" , adminModificado.getId());
 
 		if (adminModificado.getNome() == null) {
 			adminModificado.setNome(adminGetId.getNome());

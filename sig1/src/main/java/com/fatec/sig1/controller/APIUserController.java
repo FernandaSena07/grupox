@@ -40,7 +40,7 @@ public class APIUserController {
 		user = new User();
 
 		if (result.hasErrors()) {
-			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos" + result.getFieldError());
+			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos  %s" , result.getFieldError());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
 		
@@ -60,11 +60,11 @@ public class APIUserController {
 	@CrossOrigin // desabilita o cors do spring security
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deletePorId(@PathVariable(value = "id") Long id) {
-		Optional<User> user = mantemUser.consultaPorId(id);
-		if (user.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		Optional<User> userConsultaD = mantemUser.consultaPorId(id);
+		if (userConsultaD.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar usuario");
 		}
-		mantemUser.delete(user.get().getId());
+		mantemUser.delete(userConsultaD.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
 	}
 	
@@ -72,11 +72,11 @@ public class APIUserController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> consultaPorId(@PathVariable Long id) {
 		logger.info(">>>>>> apicontroller consulta por id chamado");
-		Optional<User> user = mantemUser.consultaPorId(id);
-		if (user.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		Optional<User> userConsultaC = mantemUser.consultaPorId(id);
+		if (userConsultaC.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para consultar usuario");
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(user.get());
+		return ResponseEntity.status(HttpStatus.OK).body(userConsultaC.get());
 	}
 	
 	@CrossOrigin // desabilita o cors do spring security
@@ -94,12 +94,17 @@ public class APIUserController {
 		Optional<User> c = mantemUser.consultaPorId(id);
 
 		if (c.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para atualizar usuario");
 		}
 
-		Optional<User> user = mantemUser.atualiza(id, userDTO.retornaUmCliente());
+		Optional<User> userConsultaA = mantemUser.atualiza(id, userDTO.retornaUmCliente());
 
-		return ResponseEntity.status(HttpStatus.OK).body(user.get());
+		if (userConsultaA.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("usuario não foi encontrado em atualizar");
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body(userConsultaA.get());			
+		}
+		
 	}
 
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------

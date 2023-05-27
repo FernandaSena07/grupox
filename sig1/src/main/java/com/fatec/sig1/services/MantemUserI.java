@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.fatec.sig1.model.MantemUserRepository;
 
 @Service
@@ -112,12 +113,22 @@ public class MantemUserI implements MantemUser {
 
 		User userModificado = new User(user.getNome(), user.getSobrenome(),user.getEmail(), user.getSenha(), user.getDataCadastro() ,user.getFavoritos());
 
-		User userGetId = this.repository.findById(id).get();
+		
+		Optional<User> userGetIdConsulta = this.repository.findById(id);
+		User userGetId;
+		
+		if (!(userGetIdConsulta.isEmpty())) {
+			userGetId = userGetIdConsulta.get();
+		}else {
+			return Optional.empty();
+		}
+		
+		
 
 		userModificado.setId(id);
 		
 		logger.info(
-				">>>>>> 2. servico atualiza informações do usuario => " + userModificado.getId());
+				">>>>>> 2. servico atualiza informações do usuario =>  %s" , userModificado.getId());
 
 		if (userModificado.getNome() == null) {
 			userModificado.setNome(userGetId.getNome());

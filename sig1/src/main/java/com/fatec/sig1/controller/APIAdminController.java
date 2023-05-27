@@ -45,7 +45,7 @@ public class APIAdminController {
 		admin = new Admin();
 
 		if (result.hasErrors()) {
-			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos" + result.getFieldError());
+			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos  %s" , result.getFieldError());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
 
@@ -66,11 +66,11 @@ public class APIAdminController {
 	@CrossOrigin // desabilita o cors do spring security
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deletePorId(@PathVariable(value = "id") Long id) {
-		Optional<Admin> admin = mantemAdmin.consultaPorId(id);
-		if (admin.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		Optional<Admin> adminConsultadoD = mantemAdmin.consultaPorId(id);
+		if (adminConsultadoD.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar admin");
 		}
-		mantemAdmin.delete(admin.get().getId());
+		mantemAdmin.delete(adminConsultadoD.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("Administrador excluido");
 	}
 	
@@ -79,11 +79,11 @@ public class APIAdminController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> consultaPorId(@PathVariable Long id) {
 		logger.info(">>>>>> apicontroller consulta por id chamado");
-		Optional<Admin> admin = mantemAdmin.consultaPorId(id);
-		if (admin.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		Optional<Admin> adminConsultadoC = mantemAdmin.consultaPorId(id);
+		if (adminConsultadoC.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para consultar");
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(admin.get());
+		return ResponseEntity.status(HttpStatus.OK).body(adminConsultadoC.get());
 	}
 	
 	
@@ -102,12 +102,17 @@ public class APIAdminController {
 		Optional<Admin> c = mantemAdmin.consultaPorId(id);
 
 		if (c.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para atualizar");
 		}
 
-		Optional<Admin> admin = mantemAdmin.atualiza(id, adminDTO.retornaUmCliente());
+		Optional<Admin> adminAtualizado = mantemAdmin.atualiza(id, adminDTO.retornaUmCliente());
 
-		return ResponseEntity.status(HttpStatus.OK).body(admin.get());
+		if (adminAtualizado.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Administrador não encontrado");
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body(adminAtualizado.get());			
+		}
+		
 	}
 
 	@Autowired
@@ -118,7 +123,7 @@ public class APIAdminController {
 	public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
 		Optional<User> user = mantemUser.consultaPorId(id);
 		if (user.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar usuario pelo admin");
 		}
 		mantemUser.delete(user.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
@@ -132,7 +137,7 @@ public class APIAdminController {
 	public ResponseEntity<Object> deleteONG(@PathVariable(value = "id") Long id) {
 		Optional<Ong> ong = mantemOng.consultaPorId(id);
 		if (ong.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar ong pelo admin");
 		}
 		mantemOng.delete(ong.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");

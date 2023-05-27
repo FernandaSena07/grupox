@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +24,6 @@ public class User {
 	@NotBlank(message = "Sobrenome é requerido")
 	private String sobrenome;
 		
-	@Pattern(regexp = "/^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$/i", message = "O e-mail deve ser escrito no formato nome@gmail.com")
 	@NotBlank(message = "O Email é obrigatório")
 	private String email;
 
@@ -37,6 +35,7 @@ public class User {
 	private List<Long> favoritos = new ArrayList<>();
 	
 	private String role;
+	private static final String USUARIO = "USUARIO";
 	
 	
 	
@@ -47,7 +46,7 @@ public class User {
 		this.senha = senha;
 		this.setFavoritos(favoritos);
 		setDataCadastro(LocalDate.now());
-		setRole("USUARIO");
+		setRole(USUARIO);
 	}
 
 	public User(String nome, String sobrenome, String email, String senha, LocalDate dataCadastro, List<Long> favoritos) {
@@ -57,14 +56,14 @@ public class User {
 		this.senha = senha;
 		this.dataCadastro = dataCadastro;
 		this.setFavoritos(favoritos);
-		setRole("USUARIO");
+		setRole(USUARIO);
 	}
 
 	public User(String nome, String email, String senha) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		setRole("USUARIO");
+		setRole(USUARIO);
 	}
 	
 	public User() {

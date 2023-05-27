@@ -45,21 +45,21 @@ public class APIOngController {
 		ong = new Ong();
 
 		if (result.hasErrors()) {
-			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos" + result.getFieldError());
+			logger.info(">>>>>> apicontroller validacao da entrada dados invalidos  %s" , result.getFieldError());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
 		}
 
-		if (ongDTO.getCnpj() != null) {
-			if (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent()) {
+		if (ongDTO.getCnpj() != null &&  (mantemOng.consultaPorCnpj(ongDTO.getCnpj()).isPresent())) {
 				logger.info(">>>>>> apicontroller consultaporcnpj CNPJ ja cadastrado");
 				return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
-			}
+			
+				
 		}
 		
 		if (ongDTO.getCep() != null) {
 			Optional<Endereco> endereco = Optional.ofNullable(mantemOng.obtemEndereco(ongDTO.getCep()));
 
-			logger.info(">>>>>> apicontroller obtem endereco => " + ongDTO.getCep());
+			logger.info(">>>>>> apicontroller obtem endereco =>  %s" , ongDTO.getCep());
 
 			if (endereco.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
@@ -83,11 +83,11 @@ public class APIOngController {
 	@CrossOrigin // desabilita o cors do spring security
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deletePorId(@PathVariable(value = "id") Long id) {
-		Optional<Ong> ong = mantemOng.consultaPorId(id);
-		if (ong.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		Optional<Ong> ongConsultadaD = mantemOng.consultaPorId(id);
+		if (ongConsultadaD.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar ong");
 		}
-		mantemOng.delete(ong.get().getId());
+		mantemOng.delete(ongConsultadaD.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
 	
@@ -96,11 +96,11 @@ public class APIOngController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> consultaPorId(@PathVariable Long id) {
 		logger.info(">>>>>> apicontroller consulta por id chamado");
-		Optional<Ong> ong = mantemOng.consultaPorId(id);
-		if (ong.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		Optional<Ong> ongConsultadaC = mantemOng.consultaPorId(id);
+		if (ongConsultadaC.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para consultar ong");
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
+		return ResponseEntity.status(HttpStatus.OK).body(ongConsultadaC.get());
 	}
 	
 	
@@ -119,7 +119,7 @@ public class APIOngController {
 		Optional<Ong> c = mantemOng.consultaPorId(id);
 
 		if (c.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para atualizar ong");
 		}
 
 		if (ongDTO.getCep() != null) {
@@ -129,16 +129,22 @@ public class APIOngController {
 			}
 		}
 
-		Optional<Ong> ong = mantemOng.atualiza(id, ongDTO.retornaUmCliente());
+		Optional<Ong> ongConsultadaA = mantemOng.atualiza(id, ongDTO.retornaUmCliente());
 
-		return ResponseEntity.status(HttpStatus.OK).body(ong.get());
+		if (!ongConsultadaA.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(ongConsultadaA.get());
+		}else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Falha ao atualizar :(");
+		}
+		
+		
 	}
 
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/buscaRegiao/{Zona}")
-	public ResponseEntity<Long> relatorioTotalPorRegiao(@PathVariable String Zona) {
-		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorRegiao(Zona));
+	public ResponseEntity<Long> relatorioTotalPorRegiao(@PathVariable String zona) {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorRegiao(zona));
 	}
 
 	@CrossOrigin // desabilita o cors do spring security
@@ -176,7 +182,7 @@ public class APIOngController {
 		
 		Optional<User> user = mantemUser.consultaPorId(id);
 		if (user.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para favoritar ong");
 		}
 		List<Long> favoritosDoUsuario = user.get().getFavoritos();
 		

@@ -3,7 +3,6 @@ package com.fatec.sig1.model;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 //The JPA was renamed as Jakarta Persistence in 2019 and version 3.0 was released in 2020. This included the renaming of packages and properties
@@ -46,7 +45,6 @@ public class Ong {
 	private String descricao;
 	private String segmento;
 	
-	@Pattern(regexp = "/^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$/i", message = "O e-mail deve ser escrito no formato nome@gmail.com")
 	@NotBlank(message = "O Email é obrigatório")
 	private String email;
 
@@ -60,14 +58,14 @@ public class Ong {
 	private String agencia;
 	private String banco;
 	private String pix;
-	private String Cpf;
+	private String cpf;
 	private LocalDate dataCadastro;
 	private String role;
 	
 	
 	public Ong(String nome, long telefone, String cep, String complemento, 
 			String descricao, String segmento, String email, String senha, String cnpj, 
-			String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao) {
+			String cnae, String contaCorrente, String agencia, String banco, String pix, String cpf, String regiao) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -82,7 +80,7 @@ public class Ong {
 		this.agencia = agencia;
 		this.banco = banco;
 		this.pix = pix;
-		this.Cpf = Cpf;
+		this.cpf = cpf;
 		this.regiao = regiao;
 		setDataCadastro(LocalDate.now());
 		setRole("ONG");
@@ -90,7 +88,7 @@ public class Ong {
 
 	public Ong(String nome, long telefone, String cep, String complemento,
 			   String descricao, String segmento, String email, String senha, String cnpj,
-			   String cnae, String contaCorrente, String agencia, String banco, String pix, String Cpf, String regiao, LocalDate dataCadastro) {
+			   String cnae, String contaCorrente, String agencia, String banco, String pix, String cpf, String regiao, LocalDate dataCadastro) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cep = cep;
@@ -105,7 +103,7 @@ public class Ong {
 		this.agencia = agencia;
 		this.banco = banco;
 		this.pix = pix;
-		this.Cpf = Cpf;
+		this.cpf = cpf;
 		this.regiao = regiao;
 		this.dataCadastro = dataCadastro;
 		setRole("ONG");
@@ -236,11 +234,11 @@ public class Ong {
 	}
 
 	public String getCpf() {
-		return Cpf;
+		return cpf;
 	}
 
 	public void setCpf(String cpf) {
-		Cpf = cpf;
+		this.cpf = cpf;
 	}
 
 	public String getPix() {

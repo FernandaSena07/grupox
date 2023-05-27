@@ -67,7 +67,6 @@ public class MantemOngI implements MantemOng {
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	public Long todasAsONGPorRegiao(String regiao) {
 		logger.info(">>>>>> Pesquisando todas as ongs por regiao");
-		//String regiao = "Zona Leste";
 		return repository.countByRegiao(regiao);
 	}
 
@@ -167,23 +166,29 @@ public class MantemOngI implements MantemOng {
 		repository.deleteById(id);
 
 	}
-
+	
 	@Override
 
 	public Optional<Ong> atualiza(Long id, Ong ong) {
 
 		logger.info(">>>>>> 1.servico atualiza informações da ong chamado");
-
 		Endereco endereco = obtemEndereco(ong.getCep());
-
+		
 		Ong ongModificado = new Ong(ong.getNome(), ong.getTelefone(), ong.getCep(), ong.getComplemento(),
 				ong.getDescricao(), ong.getSegmento(), ong.getEmail(), ong.getSenha(), ong.getCnpj(), ong.getCnae(), 
 				ong.getContaCorrente(),ong.getAgencia(),ong.getBanco() , ong.getPix(), ong.getCpf(), ong.getRegiao(), ong.getDataCadastro());
 
-		Ong ongGetId = this.repository.findById(id).get();
-
+		Optional<Ong> ongGetIdConsulta = this.repository.findById(id);
+		Ong ongGetId;
+		
+		if (!(ongGetIdConsulta.isEmpty())) {
+			ongGetId = ongGetIdConsulta.get();
+		}else {
+			return Optional.empty();
+		}
+		
 		ongModificado.setId(id);
-
+		
 		if (ongModificado.getCep() == null) {
 			ongModificado.setEndereco(ongGetId.getEndereco());
 		}else {			
@@ -191,75 +196,15 @@ public class MantemOngI implements MantemOng {
 		}
 		
 		logger.info(
-				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id => " + ongModificado.getId());
-
-		if (ongModificado.getNome() == null) {
-			ongModificado.setNome(ongGetId.getNome());
-		}
-
-		if (ongModificado.getTelefone() == 0) {
-			ongModificado.setTelefone(ongGetId.getTelefone());
-		}
-
-		if (ongModificado.getCnpj() == null) {
-			ongModificado.setCnpj(ongGetId.getCnpj());
-		}
-
-		if (ongModificado.getCnae() == null) {
-			ongModificado.setCnae(ongGetId.getCnae());
-		}
-
-		if (ongModificado.getComplemento() == null) {
-			ongModificado.setComplemento(ongGetId.getComplemento());
-		}
-
-		if (ongModificado.getDescricao() == null) {
-			ongModificado.setDescricao(ongGetId.getDescricao());
-		}
-
-		if (ongModificado.getSegmento() == null) {
-			ongModificado.setSegmento(ongGetId.getSegmento());
-		}
-
-		if (ongModificado.getEmail() == null) {
-			ongModificado.setEmail(ongGetId.getEmail());
-		}
-
-		if (ongModificado.getSenha() == null) {
-			ongModificado.setSenha(ongGetId.getSenha());
-		}
-
-		if (ongModificado.getCep() == null) {
-			ongModificado.setCep(ongGetId.getCep());
-		}
-		
-		if (ongModificado.getContaCorrente() == null) {
-			ongModificado.setContaCorrente(ongGetId.getContaCorrente());
-		}
-		
-		if (ongModificado.getAgencia() == null) {
-			ongModificado.setAgencia(ongGetId.getAgencia());
-		}
-		
-		if (ongModificado.getBanco() == null) {
-			ongModificado.setBanco(ongGetId.getBanco());
-		}
-		
-		if (ongModificado.getPix() == null) {
-			ongModificado.setPix(ongGetId.getPix());
-		}
-		
-		if (ongModificado.getCpf() == null) {
-			ongModificado.setCpf(ongGetId.getCpf());
-		}
-		
-		if (ongModificado.getRegiao() == null) {
-			ongModificado.setRegiao(ongGetId.getRegiao());
-		}
-		
+				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id => %s" , ongModificado.getId());
+	
 		LocalDate dataAtual = LocalDate.now();
-
+		logger.info(dataAtual);
+		logger.info(ongModificado.getDataCadastro());
+		logger.info(ongGetId.getDataCadastro());
+		
 		if (ongModificado.getDataCadastro().isEqual(dataAtual)) {
+			logger.info("OIII");
 			ongModificado.setDataCadastro(ongGetId.getDataCadastro());
 		}
 		
@@ -267,11 +212,13 @@ public class MantemOngI implements MantemOng {
 
 	}
 
+	
+
 	public Cnae obtemCnae(String cnae) {
 		RestTemplate template = new RestTemplate();
 
 		String url = "https://servicodados.ibge.gov.br/api/v2/cnae/classes/{cnae}";
-		logger.info("Consultar CNAE: " + cnae);
+		logger.info("Consultar CNAE:  %s" , cnae);
 		ResponseEntity<Cnae> resposta = null;
 
 		try {
@@ -281,7 +228,7 @@ public class MantemOngI implements MantemOng {
 			logger.info(">>>>>> consulta CNAE erro nao esperado ");
 			return null;
 		} catch (HttpClientErrorException e) {
-			logger.info(">>>>>> consulta CNAE inválido erro HttpClientErrorException =>" + e.getMessage());
+			logger.info(">>>>>> consulta CNAE inválido erro HttpClientErrorException =>  %s",e.getMessage());
 			return null;
 		}
 	}
@@ -292,7 +239,7 @@ public class MantemOngI implements MantemOng {
 
 		String url = "https://viacep.com.br/ws/{cep}/json/";
 
-		logger.info(">>>>>> servico consultaCep - " + cep);
+		logger.info(">>>>>> servico consultaCep -  %s" , cep);
 
 		ResponseEntity<Endereco> resposta = null;
 
@@ -310,7 +257,7 @@ public class MantemOngI implements MantemOng {
 
 		} catch (HttpClientErrorException e) {
 
-			logger.info(">>>>>> consulta CEP inválido erro HttpClientErrorException =>" + e.getMessage());
+			logger.info(">>>>>> consulta CEP inválido erro HttpClientErrorException => %s" , e.getMessage());
 
 			return null;
 
