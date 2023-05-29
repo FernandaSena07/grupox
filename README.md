@@ -1,4 +1,5 @@
-## Fatec ZL - Centro Paula Souza 
+## Fatec ZL - Centro Paula Souza
+
 ##### Disciplina - Programação Web III 
 Grupo CPDev
 - <a href = "https://github.com/ademiralves"> Ademir Alves </a>
@@ -7,17 +8,14 @@ Grupo CPDev
 - <a href = "https://github.com/DiogoLCarvalho"> Diogo Carvalho </a>
 - <a href = "https://github.com/FernandaSena07"> Fernanda Sena </a>
 - <a href = "https://github.com/leocaje"> Leonardo Cajé</a>
+
 ##### Processo de Desenvolvimento de Software - PDS
 > O PDS segue uma abordagem interativa incremental adaptada do Scrum. Cada interação tem uma definição de pronto estabelecida com objetivo de controlar a qualidade. 
+
 ##### Estudo de Caso – SOCIELOO
 > No contexto do projeto interdisciplinar o estudo de caso tem como objetivo desenvolver e implantar um site centralizador de ONGs, instituições e projetos sociais da cidade de São Paulo, com o propósito de divulgá-las a possíveis doadores e voluntários e criar, assim, um ELO entre ONGs e a sociedade. O diferencial do site é a maior flexibilidade do usuário para a escolha de Projetos sociais com a localização e segmento de sua preferência, podendo favoritar, analisar e avaliar cada projeto.
-##### Product Backlog 
-- RU01 - Compras - Registra e acompanha os processos de compras na organização, prevê a entrega programada de pedidos de compra 
-- RU02 - Recebimento - Registra, controla e informa sobre a entrada de mercadorias e integra as informações dos dados da nota fiscal de entrada com o estoque 
-- RU03 - Vendas – Registra e acompanha as vendas mantendo as informações integradas com o controle de estoque. 
-##### Sprint Backlog 
-> Cada requisito tem um identificador único de maneira que seja possível rastrear a necessidade do cliente com a implementação do software. 
 
+##### Levantamento de Requisitos
 | Identificador | Descrição | Prioridade | 
 | ------------ | ------------------------------------------------------------------------ | ------| 
 | REQ01 – Cadastrar ONGs/Instituições/Projetos Sociais | **Como** – ONG/Instituição/Projeto Social;<br> **Eu quero** – Cadastrar no site a ação social no site;<br> **De maneira que** – Seja possível criar um perfil próprio para o projeto (Página de ONG). | Alta |
@@ -31,11 +29,7 @@ Grupo CPDev
 | REQ09 – Login de ONGs e usuários | **Como** – Usuário;<br> **Eu quero** – Fazer doações, pesquisar ações sociais, avaliar e comentar;<br> **De maneira que** – Possa consultar e atualizar o perfil de usuário. | Alta |
 | REQ10 – Fazer Avalições | **Como** – Usuário;<br> **Eu quero** – Escrever comentários;<br> **De maneira que** – Seja possível criar comentários em perfis de ONGs. | Média |
 | REQ11 – Excluir Avaliações | **Como** – Moderador;<br> **Eu quero** – Excluir comentários;<br> **De maneira que** – Possa retirar comentários ofensivos e ou de conteúdo impróprio. | Média |
-##### Definição de pronto 
-> O sprint será considerado concluido quando: 
-> 1) Os casos de teste de aceitação forem executados e obtiverem 100% de satisfatorios. Os casos de teste (CT) são rastreáveis para os requisiitos (REQ). O elo de rastreabilidade 
-é estabelecido pelo identificador do caso de teste.
-> 2) Depois de executado os casos de teste com 100% de satisfatorios o código deve ser armazenado no github (commit). 
+
 ##### Casos de teste 
 | Identificador | Cenário de uso |
 | ------------ | ------------------------------------------------------------------------ |
@@ -53,5 +47,104 @@ Grupo CPDev
 | REQ08CT01 | **Dado que** – O usuário foi excluído do site;<br> **Quando**   (ONG/Instituição/Projeto Social) – tiver solicitado a remoção de cadastro;<br>**Então** – O usuário recebe uma notificação, via e-mail, de que seu cadastro foi removido do site. |
 | REQ13CT01| **Dado que** – o usuário está cadastrado;<br> **Quando**  - Inserir a opção de “Esqueci a senha”;<br> **Então**- Sistema envia um link para redefinição de senha no e-mail cadastrado|
 | REQ14CT01 | **Dado que** – o usuário não esteja logado;<br> **Quando**   – For escrever um comentário;<br> **Então** - O sistema irá pedir para que faça o login ou cadastre uma conta para comentar. |
+
+##### Product Backlog 
+| ID | Módulo | Como... | Eu quero... | Para que... | Prioridade | Sprint | Status | 
+| -- | ------ | ----- | ------------------------ |---------------------------------------------------------- | ------ | --- | ------ | 
+| 1 | Cadastro | ONG | Poder cadastrar minha ONG no site, através de informações como: CNAE, nome, e-mail e senha | Eu possa ter minha Página de ONG no site, descrever minha ONG e mostrar para as pessoas como ajudar minha causa. | Alta | 1 | Concluído |
+| 2 | Cadastro | Uuário | Fazer um cadastro com meu nome, e-mail e senha | Eu possa acessar as páginas de Ongs para saber mais sobre suas causas, escolher as que mais me interessam e ver como posso ajudar. | Alta | 4 | Concluído |
+| 3 | Cadastro | Administrador | Fazer meu cadastro em uma página a parte do site, específica para funcionário, com o meu número de registro, nome, e-mail e senha | Eu possa ter acesso aos dados e código do site, para que possa verificar informações e excluir contas e comentários. | Alta | 4 | Em andamento |
+| 4 | Validação | Sistema | Validar ONG na base de dados do site | As informações das ONGs sejam conferidas como autênticas e a instituição seja liberada para criar uma Página de ONG e compartilhar informações de seus trabalhos. | Alta | 1 | Concluído |
+| 5 | Login | ONG/Usuário | Fazer Login através do e-mail e senha | Eu tenha acesso a minha conta cadastrada. | Alta | 2 | Concluído |
+| 6 | Login | Administrador | Fazer Login em uma página a parte do site através do meu número de registro e senha. | Eu tenha acesso a minha conta cadastrada de funcionário | Alta | 4 | Em andamento |
+| 7 | Login | ONG/Usuário/<br>Administrador | Recuperação de senha | Caso tenha esquecido minha senha, eu possa ter acesso ao link de redefinição de senha enviado para meu e-mail cadastrado e assim conseguir fazer o login. | Alta | 5 | A fazer |
+| 8 | Criação | ONG | Criar uma Página de ONG personalizada apenas para minha ONG | Se disponibilizar informações da minha instituição aos usuários (descrição, endereço, contato, ícone, avaliações de usuários conta corrente, agência, pix) e permitir que se promovam as atividades relevantes ao meu público. | Alta | 2 | Concluído |
+| 9 | Criação | Usuário | Fazer comentários nas Páginas de ONG | Possa falar sobre os projetos sociais e minha experiência com aquelas instituições. | Média | 5 | A fazer |
+| 10 | Alteração | ONG | Alterar dados de cadastro, como o e-mail e senha | Se necessário, minha instituição possa atualizar seus dados, como forma de segurança. | Alta | 1 | Concluído |
+| 11 | Alteração | ONG | Alterar as informações (descrição, endereço, contato, ícone) da minha Página de ONG | A Página de ONG permaneça sempre com informações atualizadas para poder receber doações. | Alta | 2 | Concluído |
+| 12 | Alteração | Usuário | Alterar dados cadastrais como e-mail e senha | Se necessário, eu possa atualizar meus dados, como forma de segurança. | Alta | 4 | Concluído |
+| 13 | Alteração | Usuário | Alterar comentários, onde poderei alterá-lo em até 24hr depois que o fiz | Possa corrigir erros ortográficos, de informação ou digitação acidental. | Baixa | 5 | A fazer |
+| 14 | Exclusão | ONG | Deletar o cadastro e as informações da minha ONG do site | Não se divulgue mais informações da ONG por falta de interesse, insatisfação com o serviço ou porque ela não existe mais. | Alta | 1 | Concluído |
+| 15 | Exclusão | Usuário | Deletar meu cadastro através da minha página de configurações no site | Por motivos pessoais não quero mais manter o meu cadastro e receber informações das Ongs do site. | Alta | 4 | Concluído |
+| 16 | Exclusão | Administrador | Excluir ONG através de minhas permissões como funcionário e acesso às informações de ONGs cadastradas | As instituições que estão prestando informações falsas, descobertas por denúncias ou supervisão dos funcionários, não sejam mais divulgadas no ambiente do site e comprometam a opinião pública sobre demais ONGs ou o próprio site. | Alta | 4 | Em andamento |
+| 17 | Exclusão | Administrador | Excluir usuário através de minhas permissões como funcionário e acesso às informações de usuários cadastrados | Os usuários mal-intencionados não possam afetar a imagem de trabalhos divulgados ou do próprio site. | Alta | 4 | A fazer |
+| 18 | Exclusão | Administrador | Excluir comentários de usuários nas Páginas de ONG | Se evite ofensas e comentários mal-intencionados que afetem a honra de terceiros (ONGs ou outros usuários). | Média | 5 | A fazer |
+| 19 | ONG | ONG | Denunciar usuários que fazem comentários difamando ou insultando a ONG e/ou funcionários | As instituições não tenham suas reputações indevidamente manchadas por usuários mal-intencionados. | Baixa | 5 | A fazer |
+| 20 | Usuário | Usuário | Filtrar buscas de acordo com meus interesses (por nome, região, segmento ou localização atual) | Encontre ONGs que se adequem ao perfil de instituição eu quero ajudar. | Alta | 4 | Concluído |
+| 21 | Usuário | Usuário | Denunciar ONG através da opção de denúncias, em que coloco os motivos por fazê-lo | O administrador verifique aquela página denunciada e exclua as instituições fraudulentas. | Alta | 5 | Em andamento |
+| 22 | Usuário | Usuário | Avaliar ONGs em suas respectivas Páginas de ONG | Fazer avaliações com base em minhas experiencias e minha satisfação com aquela causa e instituição. | Média | 5 | Em andamento |
+| 23 | Usuário | Usuário | Compartilhar ONG através de um botão em que envio o link daquela Página de ONG do site para quem eu desejar | Consiga compartilhar as Páginas de ONG e divulgar as instituições e seus trabalhos para as pessoas. | Baixa | 4 | Concluído |
+| 24 | Usuário | Usuário | Ter acesso ao FAQ, onde terei respostas de perguntas frequentes sobre o site | Tenha informações sobre o site e consiga mexer nele com maior facilidade. | Baixa | 4 | Concluído |
+| 25 | Administrador | Administrador | Gerenciar banco de dados | Otimize a acessibilidade dos dados relevantes do sistema, a manutenção de dados ou alterações no banco. | Alta | 5 | Em andamento |
+| 26 | Acessibilidade | ONG/Usuário/<br>Administrador | Ter acesso ao menu de acessibilidade do site | Possa mudar o tamanho das letras e o contraste das cores conforme a minha necessidade. | Média | 2 | Concluído |
+| 27 | Acessibilidade | ONG/Usuário/<br>Administrador | Atalhos do teclado | Possa ter acesso mais rápido e prático as funções do menu de acessibilidade e ir para a home e rodapé do site. | Média | 2 | Concluído |
+| 28 | Acessibilidade | ONG/Usuário/<br>Administrador | VLibras | Em caso de ser deficiente auditivo, eu também possa acessar e entender os recursos do site, através do intérprete de libras. | Média | 2 | Concluído |
+| 29 | Responsividade | ONG/Usuário/<br>Administrador | Um site responsivo | Minha navegação seja fluída e o site funcione adequadamente em qualquer dispositivo que eu esteja utilizando para acessá-lo. | Média | 5 | A fazer |
+| 30 | Perfil | ONG | Desejo ter um perfil | Possa ter acesso as opções funcionalidades disponíveis como: configurações de perfil (alterar dados do perfil, ícone de perfil), analisar as atividades relacionado aos comentários, avaliações. | Média | 3 | Concluído |
+| 31 | Perfil | Usuário | Desejo ter um perfil | Nossa ter acesso as opções funcionalidades disponíveis como: configurações de perfil (alterar dados do perfil, ícone de perfil), histórico de atividades (comentários, avaliações e denúncias), alterar informações de ONG’s favoritadas e ter autonomia na permissão da minha localização atual. | Média | 4 | Concluído |
+| 32 | Perfil | Administrador | Desejo ter um perfil | Possa ter acesso as opções funcionalidades disponíveis como: gerenciar perfil (alterar, deletar), gerenciar administradores (cadastrar, alterar e deletar), relatório de comentários e ONG’s denunciadas, relatório de ONG’s cadastradas e deletadas (com descrição do motivo). | Média | 5 | Em andamento | 
+| 33 | Relatório | Sistema | Gerar relatórios | Exiba resultados do site para os administradores acompanharem as métricas de total de ONGs cadastradas, a quantidade de ONGs cadastradas por mês, segmento e região, o total de usuários cadastrados e a quantidade de usuários cadastrados por mês. | Média | 5 | Em andamento | 
+| 34 | Readme | Administrador | Atualização de readme do GitHub | Atualizar informações do README no GitHub, para que as pessoas tenham acesso atualizadas do projeto Socieloo. | Média | 5 | Concluído |
+| 35 | Testes | Desenvolvedor | Efetuar testes de códigos e aplicação | Para verificar se há alguma deformidade e necessidade de alteração. | Alta | 5 | Em andamento |
+| 36 | Termos de uso | Usuário/ONG | Termo de utilização do site | Para que eu tenha informações sobre os termos de uso de acesso. | Média | 5 | Em andamento |
+
+##### Sprint Backlog 
+> Cada requisito tem um identificador único de maneira que seja possível rastrear a necessidade do cliente com a implementação do software. 
+
+##### Definição de pronto 
+> O sprint será considerado concluido quando: 
+> 1) Os casos de teste de aceitação forem executados e obtiverem 100% de satisfatorios. Os casos de teste (CT) são rastreáveis para os requisiitos (REQ). O elo de rastreabilidade 
+é estabelecido pelo identificador do caso de teste.
+> 2) Depois de executado os casos de teste com 100% de satisfatorios o código deve ser armazenado no github (commit). 
+
+##### Tecnologias Utilizadas
+FRONT-END
+- React
+>
+BACK-END
+- Java
+>
+FRAMEWORKS
+- Springboot
+>
+BANCO DE DADOS
+- H2
 > 
+APIs
+- React Google Chart
+- React Google Maps
+
+O modelo de dominio (Larman, 2006 - classes conceituais ou classes de negócio) foi definido considerando as seguintes classes: 
+![Diagrama de classes - socieloo ENG - Diagrama de classe](https://user-images.githubusercontent.com/99546482/226616713-c16a680c-88d9-4707-940b-7c0e6ac9de24.jpeg)
+>
+A visão lógica da arquitetura para API de Cliente é apresentada na figura abaixo. A visã lógica descreve como o código está organizado, as classes os pacotes e os relacionamentos entre eles. 
+![f3_visao_logica](https://user-images.githubusercontent.com/68782201/162488505-5ec27561-eb83-42dc-a05f-27760e5bb7f3.jpg) 
+>A entidade Cliente foi identificada como um serviço (ERL, 2007 - serviço do tipo entidade) o contrado das operações de sistema (LARMAN, 2006, pag.140) foram definidas no diagrama abaixo. 
+```mermaid 
+classDiagram 
+ class ClienteServicoI 
+ <<interface>> ClienteServicoI 
+ 
+ ClienteServicoI : +List<Cliente> consultaTodos() 
+ ClienteServicoI : +Optional<<Cliente>> consultaPorCpf(String cpf) 
+ ClienteServicoI : +Optional<<Cliente>> consultaPorId(Long id) 
+ ClienteServicoI : +Optional<<Cliente>> save(Cliente c) 
+ ClienteServicoI : +void delete (Long id) 
+ ClienteServicoI : +Optional<<Cliente>> altera (Cliente c) 
+``` 
+>O diagrama de sequência descreve como os varios componentes arquiteturais colaboram para manipular uma operação de sistema (exemplo para operação consultaTodos()) 
+```mermaid 
+sequenceDiagram 
+Usuario ->> APIClienteController: GET /api/v1/clientes 
+APIClienteController ->> ClienteServiceI: consultaTodos ( ) 
+ClienteServiceI ->> ClienteRepository: findAll ( ) 
+ClienteRepository -->> ClienteServiceI: List[] 
+ClienteServiceI-->> APIClienteController: List[] 
+APIClienteController -->> Usuario: JSon[] 
+``` 
+>Referencias 
+- [1] KRUCHTEN, Philippe. Reference: Title: Architectural blueprints—the “4+ 1” view model of software architecture. IEEE software, v. 12, n. 6, 1995. 
+- [2] RICHARDSON, Chris. Microservices patterns: with examples in Java. Simon and Schuster, 2018. 
+- [3] ERL, Thomas. SOA principles of service design (the Prentice Hall service-oriented computing series from Thomas Erl). Prentice Hall PTR, 2007. 
+- [4] LARMAN, Craig. Utilizando UML e padrões. 2aed., Porto Alegre: Bookman Editora, 2006 (pag. 147)
 
