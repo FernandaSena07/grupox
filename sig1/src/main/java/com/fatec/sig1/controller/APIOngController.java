@@ -142,7 +142,7 @@ public class APIOngController {
 
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------
 	@CrossOrigin // desabilita o cors do spring security
-	@GetMapping("/buscaRegiao/{Zona}")
+	@GetMapping("/buscaRegiao/{zona}")
 	public ResponseEntity<Long> relatorioTotalPorRegiao(@PathVariable String zona) {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.todasAsONGPorRegiao(zona));
 	}
