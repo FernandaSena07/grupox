@@ -97,6 +97,23 @@ Grupo CPDev
 é estabelecido pelo identificador do caso de teste.
 > 2) Depois de executado os casos de teste com 100% de satisfatorios o código deve ser armazenado no github (commit). 
 
+##### Tecnologias Utilizadas
+FRONT-END
+- React
+>
+BACK-END
+- Java
+>
+FRAMEWORKS
+- Springboot
+>
+BANCO DE DADOS
+- H2
+> 
+APIs
+- React Google Chart
+- React Google Maps
+
 O modelo de dominio (Larman, 2006 - classes conceituais ou classes de negócio) foi definido considerando as seguintes classes: 
 ![Diagrama de classes - socieloo ENG - Diagrama de classe](https://user-images.githubusercontent.com/99546482/226616713-c16a680c-88d9-4707-940b-7c0e6ac9de24.jpeg)
 >
