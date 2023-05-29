@@ -43,9 +43,46 @@ Grupo CPDev
 | REQ13CT01| **Dado que** – o usuário está cadastrado;<br> **Quando**  - Inserir a opção de “Esqueci a senha”;<br> **Então**- Sistema envia um link para redefinição de senha no e-mail cadastrado|
 | REQ14CT01 | **Dado que** – o usuário não esteja logado;<br> **Quando**   – For escrever um comentário;<br> **Então** - O sistema irá pedir para que faça o login ou cadastre uma conta para comentar. |
 ##### Product Backlog 
-- RU01 - Compras - Registra e acompanha os processos de compras na organização, prevê a entrega programada de pedidos de compra 
-- RU02 - Recebimento - Registra, controla e informa sobre a entrada de mercadorias e integra as informações dos dados da nota fiscal de entrada com o estoque 
-- RU03 - Vendas – Registra e acompanha as vendas mantendo as informações integradas com o controle de estoque. 
+| ID | Módulo | Como... | Eu quero... | Para que... | Prioridade | Sprint | Status | 
+| --- | -------------- | -------------- | ------------------------ |---------------------------------------------------------- | ------ | --- | ------ | 
+| 1 | Cadastro | ONG | Poder cadastrar minha ONG no site, através de informações como: CNAE, nome, e-mail e senha | Eu possa ter minha Página de ONG no site, descrever minha ONG e mostrar para as pessoas como ajudar minha causa | Alta | 1 | Concluído |
+| 2 | Cadastro | Uuário | Fazer um cadastro com meu nome, e-mail e senha | Eu possa acessar as páginas de Ongs para saber mais sobre suas causas, escolher as que mais me interessam e ver como posso ajudar | Alta | 4 | Concluído |
+| 3 | Cadastro | Administrador | Fazer meu cadastro em uma página a parte do site, específica para funcionário, com o meu número de registro, nome, e-mail e senha | Eu possa ter acesso aos dados e código do site, para que possa verificar informações e excluir contas e comentários | Alta | 4 | Em andamento |
+| 4 | Validação | Sistema | Validar ONG na base de dados do site | As informações das ONGs sejam conferidas como autênticas e a instituição seja liberada para criar uma Página de ONG e compartilhar informações de seus trabalhos | Alta | 1 | Concluído |
+| 5 | Login | ONG/Usuário | Fazer Login através do e-mail e senha | Eu tenha acesso a minha conta cadastrada | Alta | 2 | Concluído |
+| 6 | Login | Administrador | Fazer Login em uma página a parte do site através do meu número de registro e senha | Eu tenha acesso a minha conta cadastrada de funcionário | Alta | 4 | Em andamento |
+| 7 | Login | ONG/Usuário/Administrador | Recuperação de senha | Caso tenha esquecido minha senha, eu possa ter acesso ao link de redefinição de senha enviado para meu e-mail cadastrado e assim conseguir fazer o login | Alta | 5 | A fazer |
+| 8 | Criação | 
+| 9 | Criação | 
+| 10 | Alteração |
+| 11 | Alteração |
+| 12 | Alteração |
+| 13 | Alteração |
+| 14 | Exclusão |
+| 15 | Exclusão |
+| 16 | Exclusão |
+| 17 | Exclusão |
+| 18 | Exclusão |
+| 19 | ONG | ONG | Denunciar usuários que fazem comentários difamando ou insultando a ONG e/ou funcionários | As instituições não tenham suas reputações indevidamente manchadas por usuários mal-intencionados | Baixa | 5 | A fazer |
+| 20 | Usuário | Usuário |
+| 21 | Usuário | Usuário |
+| 22 | Usuário | Usuário |
+| 23 | Usuário | Usuário |
+| 24 | Usuário | Usuário |
+| 25 | Usuário | Usuário |
+| 26 | Administrador | Administrador |
+| 27 | Acessibilidade |
+| 28 | Acessibilidade |
+| 29 | Acessibilidade |
+| 30 | Responsividade |
+| 31 | Perfil |
+| 32 | Perfil |
+| 33 | Perfil |
+| 34 | Relatório |
+| 35 | Readme | 
+| 36 | Testes |
+| 37 | Termos de uso |
+
 ##### Sprint Backlog 
 > Cada requisito tem um identificador único de maneira que seja possível rastrear a necessidade do cliente com a implementação do software. 
 ##### Definição de pronto 
