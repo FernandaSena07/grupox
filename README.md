@@ -11,6 +11,8 @@ Grupo CPDev
 
 ##### Processo de Desenvolvimento de Software - PDS
 > O PDS segue uma abordagem interativa incremental adaptada do Scrum. Cada interação tem uma definição de pronto estabelecida com objetivo de controlar a qualidade. 
+> Como padrão de projeto, foi utilizado o MVC (Model-View-Controller). 
+> A aplicação foi construído com base nos princípios SOLID.
 
 ##### Estudo de Caso – SOCIELOO
 > No contexto do projeto interdisciplinar o estudo de caso tem como objetivo desenvolver e implantar um site centralizador de ONGs, instituições e projetos sociais da cidade de São Paulo, com o propósito de divulgá-las a possíveis doadores e voluntários e criar, assim, um ELO entre ONGs e a sociedade. O diferencial do site é a maior flexibilidade do usuário para a escolha de Projetos sociais com a localização e segmento de sua preferência, podendo favoritar, analisar e avaliar cada projeto.
@@ -90,6 +92,12 @@ Grupo CPDev
 
 ##### Sprint Backlog 
 > Cada requisito tem um identificador único de maneira que seja possível rastrear a necessidade do cliente com a implementação do software. 
+> O desenvolvimento se deu através de 5 Sprints. Abaixo, ficam listados os objetivos de cada Sprint:
+- **SPRINT 1**: Criar funcionalidades relacionadas ao cadastro da ONG
+- **SPRINT 2**: Finalizar as funcionalidades relacionadas às ONGs e ajustar recursos de acessibilidade ao site
+- **SPRINT 3**: Finalizar as funcionalidades relacionadas às ONGs e dar início ao desenvolvimento do CRUD(Back-end) do usuário. 
+- **SPRINT 4**: Trabalhar com as funcionalidades do Usuário e começar a desenvolver as funcionalidades de Administrador
+- **SPRINT 5**: Desenvolver as funcionalidades do sistema relacionado ao administrador 
 
 ##### Definição de Pronto 
 > O Product Backlog será considerado concluido quando: 
