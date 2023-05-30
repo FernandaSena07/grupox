@@ -45,7 +45,7 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
 	@Query(value = "select * from ONG WHERE id IN (:numbers);", nativeQuery = true)
 	public List<Ong> getOngFavoritos(List<Long> numbers);
 	
-	@Query(value = "SELECT ONG.NOME, (SELECT count(*) FROM usuario where ARRAY_CONTAINS(USUARIO.FAVORITOS, ONG.ID) ) ONGS_FAVORITAS FROM ONG INNER JOIN USUARIO ON ARRAY_CONTAINS(USUARIO.FAVORITOS, ONG.ID) GROUP BY ONGS_FAVORITAS ORDER BY ONGS_FAVORITAS DESC;", nativeQuery = true)
+	@Query(value = "SELECT ONG.NOME, (SELECT count(*) FROM usuario where ARRAY_CONTAINS(USUARIO.FAVORITOS, ONG.ID) ) ONGS_FAVORITAS FROM ONG INNER JOIN USUARIO ON ARRAY_CONTAINS(USUARIO.FAVORITOS, ONG.ID) GROUP BY ONG.NOME ORDER BY ONGS_FAVORITAS DESC;", nativeQuery = true)
 	public List<Object> listaOngFavoritasPorUser();
 	
 }
