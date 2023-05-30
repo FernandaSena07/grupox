@@ -73,7 +73,7 @@ public class APIAdminController {
 		mantemAdmin.delete(adminConsultadoD.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body("Administrador excluido");
 	}
-	
+	 
 	
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/{id}")
