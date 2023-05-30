@@ -6,12 +6,15 @@ import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
 
+
 public interface MantemOng {
 
 	List<Ong> consultaTodos();
 	
 	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
 	List<Ong> ongsFavoritas(List<Long> favoritos);
+	
+	List<Object> listaOngFavoritasPorUser();
 	// ----------------------------------------------------- PARA FAVORITOS-----------------------------------------------------
 
 	// ----------------------------------------------------- PARA RELATÓRIO -----------------------------------------------------

@@ -194,4 +194,13 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.ongsFavoritas(favoritosDoUsuario));
 		
 	}
+	
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/ongFavoritadas")
+	public ResponseEntity<Object> listaFavoritos() {
+		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.listaOngFavoritasPorUser());
+	}
+	
+	
 }

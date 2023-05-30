@@ -16,6 +16,7 @@ import com.fatec.sig1.model.MantemOngRepository;
 import com.fatec.sig1.model.Cnae;
 import com.fatec.sig1.model.Endereco;
 
+
 /**
  * 
  * A classe mantem cliente implementa o padrao Service. Servce eh um padrao que
@@ -59,6 +60,13 @@ public class MantemOngI implements MantemOng {
 		logger.info(">>>>>> servico buscandos todas as ONG Favoritas");
 
 		return repository.getOngFavoritos(favoritos);
+	}
+	
+	@Override
+	public List<Object>  listaOngFavoritasPorUser() {
+		logger.info(">>>>>> servico listando as ongs favoritadas");
+		
+		return repository.listaOngFavoritasPorUser();
 	}
 	
 	// ----------------------------------------------------- PARA FAVORITOS -----------------------------------------------------
@@ -199,9 +207,6 @@ public class MantemOngI implements MantemOng {
 				">>>>>> 2. servico atualiza informacoes da ong cep valido para o id => %s" , ongModificado.getId());
 	
 		LocalDate dataAtual = LocalDate.now();
-		logger.info(dataAtual);
-		logger.info(ongModificado.getDataCadastro());
-		logger.info(ongGetId.getDataCadastro());
 		
 		if (ongModificado.getDataCadastro().isEqual(dataAtual)) {
 			logger.info("OIII");
@@ -278,6 +283,8 @@ public class MantemOngI implements MantemOng {
 
 		return repository.findBySenha(senha);
 	}
+
+
 
 
 

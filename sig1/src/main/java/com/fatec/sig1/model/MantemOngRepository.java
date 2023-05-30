@@ -36,6 +36,7 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
  
     Long countBySegmento(String segmento);
     
+    
 	@Query(value = "SELECT count(*) FROM ONG where data_cadastro like ?1%", nativeQuery = true)
 	public int getCadastroMes(String month);
     
@@ -43,4 +44,8 @@ public interface MantemOngRepository extends JpaRepository<Ong, Long> {
     
 	@Query(value = "select * from ONG WHERE id IN (:numbers);", nativeQuery = true)
 	public List<Ong> getOngFavoritos(List<Long> numbers);
+	
+	@Query(value = "SELECT ONG.NOME, (SELECT count(*) FROM usuario where ARRAY_CONTAINS(USUARIO.FAVORITOS, ONG.ID) ) ONGS_FAVORITAS FROM ONG INNER JOIN USUARIO ON ARRAY_CONTAINS(USUARIO.FAVORITOS, ONG.ID) GROUP BY ONGS_FAVORITAS ORDER BY ONGS_FAVORITAS DESC;", nativeQuery = true)
+	public List<Object> listaOngFavoritasPorUser();
+	
 }

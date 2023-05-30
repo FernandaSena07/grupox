@@ -115,6 +115,7 @@ public class APIAdminController {
 		
 	}
 
+	
 	@Autowired
 	MantemUser mantemUser;
 	
@@ -122,10 +123,12 @@ public class APIAdminController {
 	@DeleteMapping("deletarUsuario/{id}")
 	public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
 		Optional<User> user = mantemUser.consultaPorId(id);
+
 		if (user.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar usuario pelo admin");
 		}
 		mantemUser.delete(user.get().getId());
+		
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
 	}
 	

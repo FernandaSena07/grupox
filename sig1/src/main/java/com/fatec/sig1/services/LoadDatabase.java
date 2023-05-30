@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.Admin;
+import com.fatec.sig1.model.Exclusao;
+import com.fatec.sig1.model.ExclusaoRepository;
 import com.fatec.sig1.model.MantemAdminRepository;
 import com.fatec.sig1.model.MantemOngRepository;
 
@@ -507,6 +509,7 @@ public class LoadDatabase {
 		
 		User user2 = new User("Bianca", "Jesus","biancaJesus299@gmail.com", "98765*A", LocalDate.parse("2023-05-21"),user2Favoritos) ;
 		logger.info(TEXTO_LOGGER, repository.save(user2));
+		
 				
 		};
 
@@ -522,11 +525,24 @@ public class LoadDatabase {
 				
 		Admin admin1 = new Admin("Fernanda", "Sena de Souza","ScrumMaster4K@gmail.com", "secretyPassword12");
 		logger.info(TEXTO_LOGGER, repository.save(admin1));
-				
+		
 		};
 
 	}
 	
 	
+	@Autowired
+	ExclusaoRepository excluiRepository;
+		
+	@Bean
+	CommandLineRunner initDatabaseExclusao(ExclusaoRepository repository) {
+		return args -> {
+		repository.deleteAll();
+				
+		Exclusao exclusoes = new Exclusao();
+		logger.info(TEXTO_LOGGER, repository.save(exclusoes));
+		};
+
+	}
 
 }
