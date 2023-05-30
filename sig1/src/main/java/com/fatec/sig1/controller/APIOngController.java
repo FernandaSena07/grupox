@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.sig1.model.Endereco;
+import com.fatec.sig1.model.Exclusao;
 import com.fatec.sig1.services.MantemUser;
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.OngDTO;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.UserDTO;
+import com.fatec.sig1.services.MantemExclusao;
 import com.fatec.sig1.services.MantemOng;
 
 @RestController
@@ -80,14 +82,24 @@ public class APIOngController {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemOng.consultaTodos());
 	}
 
+	@Autowired
+	MantemExclusao mantemExclusao;
+	
 	@CrossOrigin // desabilita o cors do spring security
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deletePorId(@PathVariable(value = "id") Long id) {
 		Optional<Ong> ongConsultadaD = mantemOng.consultaPorId(id);
+		
 		if (ongConsultadaD.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar ong");
 		}
+		
 		mantemOng.delete(ongConsultadaD.get().getId());
+		
+		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		Optional<Exclusao> ongExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas() + 1, excluiID.get().getUsuariosExcluidos()));
+		
+		
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
 	

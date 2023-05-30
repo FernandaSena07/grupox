@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.Admin;
 import com.fatec.sig1.model.Exclusao;
-import com.fatec.sig1.model.ExclusaoRepository;
 import com.fatec.sig1.model.MantemAdminRepository;
+import com.fatec.sig1.model.MantemExclusaoRepository;
 import com.fatec.sig1.model.MantemOngRepository;
 
 import java.time.LocalDate;
@@ -530,17 +530,17 @@ public class LoadDatabase {
 
 	}
 	
-	
 	@Autowired
-	ExclusaoRepository excluiRepository;
+	MantemExclusaoRepository excluiRepository;
 		
 	@Bean
-	CommandLineRunner initDatabaseExclusao(ExclusaoRepository repository) {
+	CommandLineRunner initDatabaseExclusao(MantemExclusaoRepository repository, MantemExclusao repoCliente) {
 		return args -> {
 		repository.deleteAll();
 				
-		Exclusao exclusoes = new Exclusao();
-		logger.info(TEXTO_LOGGER, repository.save(exclusoes));
+		Exclusao exclui = new Exclusao();
+		logger.info(TEXTO_LOGGER, repository.save(exclui));
+		
 		};
 
 	}

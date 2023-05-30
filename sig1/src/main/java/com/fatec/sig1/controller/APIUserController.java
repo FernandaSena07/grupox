@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fatec.sig1.model.Exclusao;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.UserDTO;
+import com.fatec.sig1.services.MantemExclusao;
 import com.fatec.sig1.services.MantemUser;
 
 @RestController
@@ -56,17 +59,28 @@ public class APIUserController {
 	public ResponseEntity<List<User>> consultaTodos() {
 		return ResponseEntity.status(HttpStatus.OK).body(mantemUser.consultaTodos());
 	}
-
+	
+	@Autowired
+	MantemExclusao mantemExclusao;
+	
 	@CrossOrigin // desabilita o cors do spring security
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deletePorId(@PathVariable(value = "id") Long id) {
 		Optional<User> userConsultaD = mantemUser.consultaPorId(id);
+		
 		if (userConsultaD.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar usuario");
 		}
+		
 		mantemUser.delete(userConsultaD.get().getId());
+		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		Optional<Exclusao> userExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas(), excluiID.get().getUsuariosExcluidos() + 1));
+		
+		
+		
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
 	}
+	
 	
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/{id}")

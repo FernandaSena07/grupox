@@ -23,7 +23,9 @@ import com.fatec.sig1.model.Ong;
 import com.fatec.sig1.model.User;
 import com.fatec.sig1.model.Admin;
 import com.fatec.sig1.model.AdminDTO;
+import com.fatec.sig1.model.Exclusao;
 import com.fatec.sig1.services.MantemAdmin;
+import com.fatec.sig1.services.MantemExclusao;
 import com.fatec.sig1.services.MantemOng;
 import com.fatec.sig1.services.MantemUser;
 
@@ -115,6 +117,8 @@ public class APIAdminController {
 		
 	}
 
+	@Autowired
+	MantemExclusao mantemExclusao;
 	
 	@Autowired
 	MantemUser mantemUser;
@@ -129,6 +133,9 @@ public class APIAdminController {
 		}
 		mantemUser.delete(user.get().getId());
 		
+		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		Optional<Exclusao> userExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas(), excluiID.get().getUsuariosExcluidos() + 1));
+		
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
 	}
 	
@@ -139,11 +146,34 @@ public class APIAdminController {
 	@DeleteMapping("deletarOng/{id}")
 	public ResponseEntity<Object> deleteONG(@PathVariable(value = "id") Long id) {
 		Optional<Ong> ong = mantemOng.consultaPorId(id);
+		
 		if (ong.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado para deletar ong pelo admin");
 		}
 		mantemOng.delete(ong.get().getId());
+		
+		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		Optional<Exclusao> ongExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas() + 1, excluiID.get().getUsuariosExcluidos()));
+		
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/todasAsOngsExcluidas")
+	public ResponseEntity<Integer> consultaTodasAsOngExcluidas() {
+		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(excluiID.get().getOngExcluidas());
+	}
+	
+	@CrossOrigin // desabilita o cors do spring security
+	@GetMapping("/todasAsUserExcluidas")
+	public ResponseEntity<Integer> consultaTodasAsUsuariosExcluidas() {
+		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(excluiID.get().getUsuariosExcluidos());
+	}
+	
+
 	
 }
