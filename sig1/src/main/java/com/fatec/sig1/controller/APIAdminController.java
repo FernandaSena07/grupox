@@ -166,6 +166,7 @@ public class APIAdminController {
 		return ResponseEntity.status(HttpStatus.OK).body(excluiID.get().getOngExcluidas());
 	}
 	
+	
 	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/todasAsUserExcluidas")
 	public ResponseEntity<Integer> consultaTodasAsUsuariosExcluidas() {
