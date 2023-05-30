@@ -97,7 +97,13 @@ public class APIOngController {
 		mantemOng.delete(ongConsultadaD.get().getId());
 		
 		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		
+		if (excluiID.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id de exclusão não encontrada");
+		}
+		
 		Optional<Exclusao> ongExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas() + 1, excluiID.get().getUsuariosExcluidos()));
+		logger.info(">>>>>> apicontroller mais um usuario foi excluido  %s" , ongExclui);
 		
 		
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");

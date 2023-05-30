@@ -134,7 +134,14 @@ public class APIAdminController {
 		mantemUser.delete(user.get().getId());
 		
 		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		
+		if (excluiID.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id de exclusão não encontrada");
+		}
+		
 		Optional<Exclusao> userExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas(), excluiID.get().getUsuariosExcluidos() + 1));
+		logger.info(">>>>>> apicontroller mais um usuario foi excluido  %s" , userExclui);
+		
 		
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
 	}
@@ -153,7 +160,13 @@ public class APIAdminController {
 		mantemOng.delete(ong.get().getId());
 		
 		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		
+		if (excluiID.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id de exclusão não encontrada");
+		}
+		
 		Optional<Exclusao> ongExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas() + 1, excluiID.get().getUsuariosExcluidos()));
+		logger.info(">>>>>> apicontroller mais um usuario foi excluido  %s" , ongExclui);
 		
 		return ResponseEntity.status(HttpStatus.OK).body("ONG excluida");
 	}
@@ -163,6 +176,10 @@ public class APIAdminController {
 	public ResponseEntity<Integer> consultaTodasAsOngExcluidas() {
 		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
 		
+		if (excluiID.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(-1);
+		}
+		
 		return ResponseEntity.status(HttpStatus.OK).body(excluiID.get().getOngExcluidas());
 	}
 	
@@ -171,6 +188,10 @@ public class APIAdminController {
 	@GetMapping("/todasAsUserExcluidas")
 	public ResponseEntity<Integer> consultaTodasAsUsuariosExcluidas() {
 		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
+		
+		if (excluiID.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(-1);
+		}
 		
 		return ResponseEntity.status(HttpStatus.OK).body(excluiID.get().getUsuariosExcluidos());
 	}

@@ -74,8 +74,13 @@ public class APIUserController {
 		
 		mantemUser.delete(userConsultaD.get().getId());
 		Optional <Exclusao> excluiID = mantemExclusao.consultaPorId((long) 1);
-		Optional<Exclusao> userExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas(), excluiID.get().getUsuariosExcluidos() + 1));
 		
+		if (excluiID.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id de exclusão não encontrada");
+		}
+		
+		Optional<Exclusao> userExclui = mantemExclusao.atualiza((long) 1, new Exclusao(excluiID.get().getOngExcluidas(), excluiID.get().getUsuariosExcluidos() + 1));
+		logger.info(">>>>>> apicontroller mais um usuario foi excluido  %s" , userExclui);
 		
 		
 		return ResponseEntity.status(HttpStatus.OK).body("Usuário excluido");
